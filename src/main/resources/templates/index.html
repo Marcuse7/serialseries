@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Serial Series</title>
-<meta charset="UTF-8" http-equiv="Content-Type" />
-<link rel="stylesheet" href="css/style.css">
+<head th:include="fragments/external-resources.html :: headFragment">
+<title id="pageTitle">Serial Series | Home</title>
 </head>
 <body>
-	<header>
+	<header th:replace="fragments/header.html :: top">
 	</header>
-	<h1>Welcome to Serial Series</h1>
-	<footer>
+
+	<section id="top-teaser">
+		<article>
+			<h2>Don't miss this one!</h2>
+			<p>Lorem ipsum dolor sit amet ...</p>
+			<a href="#">more</a>
+		</article>
+		<article>
+			<h2>Don't miss this one!</h2>
+			<p>Lorem ipsum dolor sit amet ...</p>
+			<a href="#">more</a>
+		</article>
+		<article>
+			<h2>Don't miss this one!</h2>
+			<p>Lorem ipsum dolor sit amet ...</p>
+			<a href="#">more</a>
+		</article>
+	</section>
+
+	<footer th:replace="fragments/footer.html :: footer">
 	</footer>
 </body>
 </html>
