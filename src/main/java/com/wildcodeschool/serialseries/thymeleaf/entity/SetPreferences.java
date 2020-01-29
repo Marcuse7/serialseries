@@ -1,8 +1,8 @@
 
 
-public SetPreferences {
-  public static void main(String[] args) {
-    ArrayList<String> Watchlist = new ArrayList<String>();
+// public class SetPreferences {
+ 
+//   ArrayList<String> Watchlist = new ArrayList<String>();
 
     // TODO Wert aus Preferences eines Users auslesen
 
@@ -10,4 +10,4 @@ public SetPreferences {
 
     // TODO Save with User Preferences
 
-}
+// }

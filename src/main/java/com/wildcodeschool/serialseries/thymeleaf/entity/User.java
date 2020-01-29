@@ -1,3 +1,5 @@
+package com.wildcodeschool.serialseries.thymeleaf.entity;
+
 import java.util.ArrayList;
 
 import javax.persistence.Entity;

@@ -1,3 +1,5 @@
+package com.wildcodeschool.serialseries.thymeleaf.entity;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
