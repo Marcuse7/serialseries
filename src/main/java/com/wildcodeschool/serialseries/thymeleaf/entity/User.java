@@ -3,15 +3,15 @@
  */
 
 
-package com.wildcodeschool.serialseries.thymeleaf.repository;
+package com.wildcodeschool.serialseries.thymeleaf.entity;
 
-public class UserRepository {
+public class User {
 
     private final Integer userId;
     private final String userName;
 
-    public UserRepository(Integer userId,
-                          String userName) {
+    public User(Integer userId,
+                String userName) {
         this.userId = userId;
         this.userName = userName;
     }
