@@ -15,19 +15,19 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/users")
 public class UserController {
 
-    private static final List<UserRepository> users = Arrays.asList(
+    private static final List<UserRepository> USERS = Arrays.asList(
             new UserRepository(1, "Markus Heinrichs"),
-            new UserRepository(2, "monika Messerer"),
+            new UserRepository(2, "Monika Messerer"),
             new UserRepository(3, "Robert Duschek"),
             new UserRepository(4, "Kadir Erucu")
     );
 
     @GetMapping(path = "{userId}")
     public UserRepository getUser(@PathVariable("userId") Integer userId) {
-        return users.stream()
+        return USERS.stream()
                 .filter(user -> userId.equals(user.getUserId()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Benutzer " + userId + " existiert nicht"));
