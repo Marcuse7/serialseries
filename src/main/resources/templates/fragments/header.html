@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+	<header th:fragment="top">
+	
+	
+  
+  <nav class="container">
+		<div class="row">
+		<ul class="col-lg-4">
+		<li><a href="https://www.netflix.com/">netflix</a></li>
+      	<li><a href="http://www.t-online.de">www.t-online.de</a></li>
+      	<li><a href="http:www.videoload.de">Videoload</a></li>	
+      	</ul>
+
+     <h3  class="col-lg-4">Profile</h3>
+		<ul class="col-lg-4">
+		<li><a href="#">Sign in</a></li>
+		<li><a href="#">Register</a></li>
+		</ul>
+      </div>
+  </nav>
+  <section class="jumbotron text-center">
+	<h1>Serial Series</h1>
+	<img th:src="@{/images/test-logo-200x100.png}"  />
+	<p>The world's most popular series administration site</p>
+	</section>
+
+</header>
+
+</body>
+</html>

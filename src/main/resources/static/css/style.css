@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+body {
+	background-color: #FFF5EE;
+	color: #A0522D;
+	font-family: 'Quicksand', sans-serif;
+	}
+
+a {
+	color: #DD6347;
+	text-decoration:none;
+	}
+a:visited  {
+	color: #AA8072;
+	}
+a:hover {
+	opacity: 0.5;
+}
+
+li {
+	list-style-type:none;
+}
