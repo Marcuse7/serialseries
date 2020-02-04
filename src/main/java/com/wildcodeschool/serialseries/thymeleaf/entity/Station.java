@@ -9,7 +9,7 @@ public class Station {
 	private int id;
 	private String name;
 	private String country;
-	private Boolean available;
+	//private Boolean available;
 
 
 	public Station(int id, String name, String country, Boolean available) {
@@ -17,7 +17,7 @@ public class Station {
 		this.id = id;
 		this.name = name;
 		this.country = country;
-		this.available = available;
+//		this.available = available;
 	}
 
 	public Station () {
@@ -48,12 +48,12 @@ public class Station {
 		this.country = country;
 	}
 
-	public Boolean getAvailable() {
-		return available;
-	}
+//	public Boolean getAvailable() {
+//		return available;
+//	}
 
-	public void setAvailable(Boolean available) {
-		this.available = available;
-	}
+//	public void setAvailable(Boolean available) {
+//		this.available = available;
+//	}
 
 }
