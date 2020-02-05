@@ -1,15 +1,24 @@
 package com.wildcodeschool.serialseries.thymeleaf.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Station {
 	@Id
+	@Column(columnDefinition="VARCHAR(12)")
 	private int id;
+	@Column(nullable=false)
 	private String name;
+	@Column(columnDefinition="VARCHAR(3)", nullable=false)
 	private String country;
 	private Boolean available;
+	@OneToMany(mappedBy="station")
+	private List<Schedule> schedules;
 
 
 	public Station(int id, String name, String country, Boolean available) {

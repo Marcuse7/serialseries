@@ -1,18 +1,56 @@
 package com.wildcodeschool.serialseries.thymeleaf.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Episode {
 	@Id
+	@Column(columnDefinition="VARCHAR(14)")
 	private int id;
+	
+	@Column(columnDefinition="VARCHAR(120)", nullable=false)
+	private String name;
+	
+	@Column(columnDefinition="VARCHAR(150)", nullable=false)
+	private String episodeTitle;
+	
+	@Column(nullable=true)
 	private int number;
+	
+	@Column(nullable=true)
 	private int season;
+	
+	@Column(columnDefinition="VARCHAR(3)", nullable=false)
+	private String language;
+	
+	@Column(columnDefinition="VARCHAR(1000)")
 	private String description;
+	
+	@Column(columnDefinition="VARCHAR(200)")
 	private String picture;
+	
 	private float rating;
+	
+	@Column(nullable=true)
+	private boolean is_series;
+	
+	@Column(nullable=true)
 	private boolean wanted;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="series_id")
+	private Series series;
+	
+	@OneToMany(mappedBy="episode")
+	private List<Schedule> schedules;
 
 	public Episode(int id, int number, int season, String description, String picture, float rating) {
 		super();
@@ -46,6 +84,14 @@ public class Episode {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getNumber() {
@@ -94,6 +140,10 @@ public class Episode {
 
 	public void setWanted(boolean wanted) {
 		this.wanted = wanted;
+	}
+
+	public boolean isIs_series() {
+		return is_series;
 	}
 
 
