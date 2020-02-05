@@ -16,6 +16,7 @@ public class Station {
 	private String name;
 	@Column(columnDefinition="VARCHAR(3)", nullable=false)
 	private String country;
+
 	private Boolean available;
 	@OneToMany(mappedBy="station")
 	private List<Schedule> schedules;
