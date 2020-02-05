@@ -16,13 +16,17 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Schedule {
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@Column(nullable=false)
 	private LocalDateTime airDateTime;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="station_id")
 	private Station station;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="episode_id")
 	private Episode episode;
