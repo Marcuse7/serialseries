@@ -5,8 +5,8 @@
 
 package com.wildcodeschool.serialseries.thymeleaf.service;
 
-import com.wildcodeschool.serialseries.thymeleaf.entity.user.User;
-import com.wildcodeschool.serialseries.thymeleaf.repository.user.UserRepository;
+import com.wildcodeschool.serialseries.thymeleaf.entity.User;
+import com.wildcodeschool.serialseries.thymeleaf.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
