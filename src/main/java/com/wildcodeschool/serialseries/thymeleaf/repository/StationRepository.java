@@ -10,7 +10,7 @@ import com.wildcodeschool.serialseries.thymeleaf.entity.Station;
 
 	
 	@Repository
-	public interface StationRepository extends JpaRepository<Station, Long> {
+	public interface StationRepository extends JpaRepository<Station, Integer> {
 	
 //		List<Station> findbyNameContaining(String name);
 //		List <Station> findAll();

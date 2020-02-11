@@ -20,30 +20,21 @@
 <table>
     <thead>
     <tr>
-<!--         <th>Id</th> -->
-<!--         <th>Name</th> -->
-<!-- <!--         <th>Country</th> -->
-<!--         <th>Stationlogo</th> -->
+        <th>Id</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
    
-    <tr th:each="station : ${stations}">
-<!--         <td th:text="${station.id}">id</td> -->
-<!--         <td th:text="${station.name}">name</td> -->
-<!--         <td th:text="${station.country}">country</td> -->
-
-		<img th:src="@{${station.picture}}"/>
-   
-<!-- 		<td img th:src="@{${station.stationlogo}}">stationlogo</td> -->
-		
-		
-<!--         <td th:text="${station.stationlogo}">stationlogo</td> -->
-<!--         < img th:src="${'station.stationlogo;base64,'+image}" alt="" /> -->
+    <tr th:each="episode : ${episodes}">
+        <td th:text="${episode.id}">id</td>
+        <td th:text="${epdiose.episode_title}">name</td>
+<!--        // <td th:text="${station.country}">country</td> -->
 <!--         <td th:text="${station.schedules.episode_id}">episode_id</td> -->
-<!-- 	<td> <img th:src="${station.picture}">airDate</td> -->
-		 <a button type="button" class="btn btn-light" th:href="@{findOne/(id=${station.id})}">Zeige die Serien</a> 
-		 </td>
+<!--         <td th:text="${schedule.airDateTime}">airDate</td> -->
+		<td><a th:href="@{/eptions(idSchedule=${station_id})}">Serien</a></td> 
     </tbody>
 </table>
 
