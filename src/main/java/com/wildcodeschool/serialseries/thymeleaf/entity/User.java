@@ -20,10 +20,14 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
-
-    @Column(columnDefinition="VARCHAR(50)", unique=true)
-    private String name;
+	
+	@Column(columnDefinition="VARCHAR(50)", unique=true)
+	private String name;
+	
+	@Column(columnDefinition="VARCHAR(14)")
 	private String role;
+	
+	@Column(columnDefinition="VARCHAR(100)")
 	private String password;
 
     @Override
