@@ -1,4 +1,4 @@
-package com.wildcodeschool.serialseries.thymeleaf.entity.user;
+package com.wildcodeschool.serialseries.thymeleaf.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,8 +21,8 @@ public class User implements UserDetails {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(unique = true)
-	private String name;
+    @Column(columnDefinition="VARCHAR(50)", unique=true)
+    private String name;
 	private String role;
 	private String password;
 
