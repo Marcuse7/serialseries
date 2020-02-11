@@ -12,12 +12,18 @@ public class Station {
 	@Id
 	@Column(columnDefinition="VARCHAR(12)")
 	private int id;
+	
 	@Column(nullable=false)
 	private String name;
+	
 	@Column(columnDefinition="VARCHAR(3)", nullable=false)
 	private String country;
 
 	private Boolean available;
+	
+	@Column(columnDefinition="VARCHAR(255)")
+	private String picture;
+	
 	@OneToMany(mappedBy="station")
 	private List<Schedule> schedules;
 
@@ -64,6 +70,14 @@ public class Station {
 
 	public void setAvailable(Boolean available) {
 		this.available = available;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public List<Schedule> getSchedules() {
+		return schedules;
 	}
 
 }
