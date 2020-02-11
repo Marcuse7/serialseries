@@ -1,18 +1,64 @@
-package com.wildcodeschool.serialseries.thymeleaf.entity;
+package com.wildcodeschool.serialseries.thymeleaf.entity.user;
 
-import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
-public class User {
+@Getter
+@Setter
+public class User implements UserDetails {
+
+    private static final long serialVersionUID = 5859759120668175499L;
+
 	@Id
-	private int id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(unique = true)
 	private String name;
-	private String nickName;
-	private String eMail;
+	private String role;
 	private String password;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getUsername() {
+        return name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+	/*	private String nickName;
+	private String eMail;
 	private ArrayList<String> Watchlist;      // Preferred stations
 	private ArrayList<String> Wantedlist;    // Missing Episodes
 	private ArrayList<Integer> StationsPositive;	  // Preferred Stations
@@ -101,7 +147,7 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	}*/
 	
 
 
