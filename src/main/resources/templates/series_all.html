@@ -23,10 +23,10 @@
        <!--  <td th:text="${series.id}">id</td> -->
         <td th:text="${series.name}">name</td>
         <td th:text="${series.description}">Description</td>
-        <td th:text="${series.picture}">/Dummy-Bild/</td>
-        <td th:text="${series.rating}">4.5</td>
+        <td><img th:src="${series.picture}" width="200"/></td>
+        <td th:text="${series.rating}">4</td>
         <td th:text="${series.language}">English</td>
-        <td><a th:href="@{/series/watch(idSeries=${series.id})}">Add to watchlist</a></td>
+        <td><a th:href="@{/series/watch(idSeries=${series.id})}">Add to watch list</a></td>
         
     </tr>
     </tbody>
