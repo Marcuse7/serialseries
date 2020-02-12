@@ -18,9 +18,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public WebSecurityConfig(UserDetailsService userDetailsService) {
+    public WebSecurityConfig(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+
         this.userDetailsService = userDetailsService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -35,18 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new PasswordEncoder() {
-
-            @Override
-            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                return encode(rawPassword).equals(encodedPassword);
-            }
-
-            @Override
-            public String encode(CharSequence rawPassword) {
-                return rawPassword.toString();
-            }
-
-        });
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 }
