@@ -18,7 +18,7 @@ public class Station {
 	
 	@Column(columnDefinition="VARCHAR(3)", nullable=false)
 	private String country;
-
+	
 	private Boolean available;
 	
 	@Column(columnDefinition="VARCHAR(255)")
@@ -28,12 +28,21 @@ public class Station {
 	private List<Schedule> schedules;
 
 
-	public Station(int id, String name, String country, Boolean available) {
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
+	}
+
+	public Station(int id, String name, String country,String picture, Boolean available) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.country = country;
 		this.available = available;
+		this.picture = picture;
 	}
 
 	public Station () {
@@ -71,13 +80,13 @@ public class Station {
 	public void setAvailable(Boolean available) {
 		this.available = available;
 	}
-
+	
 	public String getPicture() {
 		return picture;
 	}
 
-	public List<Schedule> getSchedules() {
-		return schedules;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 }
