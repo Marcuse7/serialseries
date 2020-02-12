@@ -18,35 +18,6 @@ import com.wildcodeschool.serialseries.thymeleaf.entity.Station;
 import com.wildcodeschool.serialseries.thymeleaf.repository.SeriesRepository;
 import com.wildcodeschool.serialseries.thymeleaf.repository.StationRepository;
 
-//package com.wildcodeschool.serialseries.thymeleaf.controller;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import com.wildcodeschool.serialseries.thymeleaf.repository.SeriesRepository;
-////import com.wildcodeschool.serialseries.thymeleaf.repository.StationRepository;
-//
-//
-//@Controller
-//public class StationSerieController {
-//	
-//	 @Autowired
-//	    private SeriesRepository seriesRepo;
-//
-//	    @GetMapping("/stations")
-//	    
-//	    public String getAll(Model model) {
-//
-//	        model.addAttribute("stations", seriesRepo.findAll());
-////	    public String ViewSerieByProgram(Model model) {
-////
-////	        model.addAttribute("series", seriesRepo.findAll());
-////
-//	        return "stations";
-//	     	}
-//}
-
 @Controller
 public class StationSerieController {
 
@@ -65,7 +36,7 @@ public class StationSerieController {
 
     @GetMapping("/stations/1/stationsSeries")
     public String inscription(Model out,
-                              @RequestParam Integer station_id) {
+                              @RequestParam String station_id) {
 
         Optional<Station> optionalStation = stationRepo.findById(station_id);
         Station station = new Station();
@@ -93,7 +64,7 @@ public class StationSerieController {
     }
 
     @PostMapping("/stations/1/stationsSeries")
-    public String inscription(@RequestParam Integer station_id,
+    public String inscription(@RequestParam String station_id,
                               @RequestParam String idSeries) {
 
         Optional<Series> optionalSerie = seriesRepo.findById(idSeries);

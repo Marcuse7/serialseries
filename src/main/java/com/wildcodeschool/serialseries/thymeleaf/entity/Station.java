@@ -12,14 +12,18 @@ public class Station {
 	@Id
 	@Column(columnDefinition="VARCHAR(12)")
 	private int id;
+	
 	@Column(nullable=false)
 	private String name;
+	
 	@Column(columnDefinition="VARCHAR(3)", nullable=false)
 	private String country;
-	@Column (columnDefinition="VARCHAR(200)")
-	private String picture; 
 	
 	private Boolean available;
+	
+	@Column(columnDefinition="VARCHAR(255)")
+	private String picture;
+	
 	@OneToMany(mappedBy="station")
 	private List<Schedule> schedules;
 
