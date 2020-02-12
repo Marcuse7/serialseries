@@ -1,23 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <meta charset="UTF-8">
-    <title>Station List</title>
- <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/external-resources.html :: headFragment">
+<title id="pageTitle">Serial Series | Station List</title>
 </head>
-
 <body>
 
+<header th:replace="fragments/header.html :: top">
+	</header>
  <img src="../../images/man-holding-remote-control-10401601.jpg" 
      th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
 
 <h1>Station</h1>   
-<table>
+<table class="table  table-hover table-striped">
     <thead>
     <tr>
 <!--         <th>Id</th> -->
@@ -46,6 +40,7 @@
 		 </td>
     </tbody>
 </table>
-
+<footer th:replace="fragments/footer.html :: footer">
+	</footer>
 </body>
 </html>
