@@ -2,13 +2,17 @@ package com.wildcodeschool.serialseries.thymeleaf.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,6 +33,9 @@ public class User implements UserDetails {
 	
 	@Column(columnDefinition="VARCHAR(100)")
 	private String password;
+	
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Series> subscriptions = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -59,6 +66,15 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+    
+    public void subscribe(Series series) {
+    	subscriptions.add(series);
+    	
+    }
+    
+    public void unsubscribe(Series series) {
+    	subscriptions.remove(series);
     }
 
 }

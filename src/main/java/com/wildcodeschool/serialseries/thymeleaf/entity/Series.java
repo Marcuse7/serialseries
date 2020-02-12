@@ -1,31 +1,47 @@
 package com.wildcodeschool.serialseries.thymeleaf.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Series {
+	
 	@Id
 	@Column(columnDefinition="VARCHAR(14)")
     private String id;
+	
 	@Column(columnDefinition="VARCHAR(120)", nullable=false)
 	private String name;
+	
 	@Column(columnDefinition="VARCHAR(1000)")
 	private String description;
+	
 	@Column(columnDefinition="VARCHAR(200)")
 	private String picture;
+	
 	private Float rating;
+	
 	@Column(columnDefinition="VARCHAR(3)", nullable=false)
 	private String language;
+	
 	private Boolean watched;
+	
 	private Boolean is_series;
+	
 	@OneToMany(mappedBy="series")
 	private List<Episode> episodes;
 
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<User> subscribers = new HashSet<>();
 
 	public Series () {
 

@@ -10,11 +10,11 @@
 	<table>
     <thead>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Description</th>
         <th>Pic</th>
-        <th></th>
+        <th>Rating</th>
+        <th>Language</th>
     </tr>
     </thead>
     <tbody>
@@ -26,7 +26,8 @@
         <td><img th:src="${series.picture}" width="400px"></td>
         <td th:text="${series.rating}">4.5</td>
         <td th:text="${series.language}">English</td>
-        <td><a th:href="@{/series/watch(idSeries=${series.id})}">Add to watchlist</a></td>
+        <td><input type="checkbox" /></td>
+        <td><a th:href="@{/series/watch(seriesID=${series.id})}">Add to watch list</a></td>  <!--  ${series.id}, , ${#authentication.getPrincipal().getUser() -->
         
     </tr>
     </tbody>
