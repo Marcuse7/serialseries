@@ -27,6 +27,18 @@ public class Schedule {
 	@JoinColumn(name="station_id")
 	private Station station;
 	
+	public Station getStation() {
+		return station;
+	}
+	public void setStation(Station station) {
+		this.station = station;
+	}
+	public Episode getEpisode() {
+		return episode;
+	}
+	public void setEpisode(Episode episode) {
+		this.episode = episode;
+	}
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="episode_id")
 	private Episode episode;
