@@ -39,7 +39,9 @@
         <th th:text="${series.name}"  scope="row">Name</td>
 
         <td th:text="${series.description}">Description</td>
+
         <td><img th:src="${series.picture}" class="img-fluid rounded" alt="${series.name}"></td>
+
 
         <td><a th:href="@{/series/watch(idSeries=${series.id})}">Add to watchlist</a></td>
 

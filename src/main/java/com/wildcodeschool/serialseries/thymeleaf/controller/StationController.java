@@ -20,7 +20,6 @@ public class StationController {
     //private SeriesRepository  seriesRepo;
 
     @GetMapping("/stations")
-
     public String getAll(Model model, @RequestParam(defaultValue = "0") int page) {
 
         model.addAttribute("stations", stationRepo.findAll(PageRequest.of(page, 6)));
