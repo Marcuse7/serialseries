@@ -34,7 +34,9 @@ public class User implements UserDetails {
 	@Column(columnDefinition="VARCHAR(100)")
 	private String password;
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	
+	
+	@ManyToMany(fetch=FetchType.EAGER, mappedBy="subscribers", cascade = CascadeType.ALL)
 	private Set<Series> subscriptions = new HashSet<>();
 
     @Override
@@ -69,6 +71,10 @@ public class User implements UserDetails {
     }
     
     public void subscribe(Series series) {
+    	if (subscriptions == null) {
+    		subscriptions = new HashSet<Series>(10);
+    		System.out.println("subscriptions were null");
+    	}
     	subscriptions.add(series);
     	
     }
