@@ -43,6 +43,16 @@ public class SeriesController {
         return "series_all";
     }
 	
+	@GetMapping("/series/table")
+    public String showAllSeriesTable(Model out) {
+		
+		
+		out.addAttribute ("series", seriesRepository.findAll());
+		
+        return "series_table";
+    }
+	
+	
 	@GetMapping("/series/watch")
 	@Transactional
 	public String addSubscriber(@RequestParam String seriesID) {
