@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -40,7 +41,9 @@ public class Series {
 	@OneToMany(mappedBy="series")
 	private List<Episode> episodes;
 
+	// this class is "owner" of many-to-many relation, class User is slave and has mappedBy parameter
 	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="Subscriptions")
 	private Set<User> subscribers = new HashSet<>();
 
 	public Series () {
@@ -139,5 +142,20 @@ public class Series {
 		this.is_series = is_series;
 	}
 
+	public Set<User> getSubscribers() {
+		return subscribers;
+	}
 
+	public void setSubscribers(Set<User> subscribers) {
+		this.subscribers = subscribers;
+	}
+
+	public void subscribe(User user) {
+		if (subscribers == null) {
+			subscribers = new HashSet<User>();
+			System.out.print("Series.subscribers was null");
+		}
+		subscribers.add(user);
+		System.out.println("User " + user.getName() + " added to series subscription");
+	}
 }
