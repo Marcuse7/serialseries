@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Episode {
 	@Id
 	@Column(columnDefinition="VARCHAR(14)")
-	private int id;
+	private String id;
 	
 	@Column(columnDefinition="VARCHAR(120)", nullable=false)
 	private String name;
@@ -52,7 +52,7 @@ public class Episode {
 	@OneToMany(mappedBy="episode")
 	private List<Schedule> schedules;
 
-	public Episode(int id, int number, int season, String description, String picture, float rating) {
+	public Episode(String id, int number, int season, String description, String picture, float rating) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -67,7 +67,7 @@ public class Episode {
 	}
 
 
-	public Episode(int id, int number, int season, String description, String picture, float rating, boolean wanted) {
+	public Episode(String id, int number, int season, String description, String picture, float rating, boolean wanted) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -78,11 +78,11 @@ public class Episode {
 		this.wanted = wanted;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -146,6 +146,12 @@ public class Episode {
 		return is_series;
 	}
 
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
 
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
+	}
 
 }

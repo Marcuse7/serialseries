@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class Schedule {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(nullable=false)
 	private LocalDateTime airDateTime;
@@ -43,10 +43,10 @@ public class Schedule {
 	@JoinColumn(name="episode_id")
 	private Episode episode;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public LocalDateTime getAirDateTime() {

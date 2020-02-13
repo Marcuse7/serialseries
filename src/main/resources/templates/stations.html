@@ -42,7 +42,7 @@
 <!--         < img th:src="${'station.stationlogo;base64,'+image}" alt="" /> -->
 <!--         <td th:text="${station.schedules.episode_id}">episode_id</td> -->
 <!-- 	<td> <img th:src="${station.picture}">airDate</td> -->
-		 <a button type="button" class="btn btn-light" th:href="@{findOne/(id=${station.id})}">Zeige die Serien</a> 
+		 <a button type="button" class="btn btn-light" th:href="@{stations/findOne/(id=${station.id})}">Zeige die Serien</a> 
 		 </td>
     </tbody>
 </table>

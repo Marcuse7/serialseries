@@ -31,7 +31,7 @@ public class StationController {
     }
         @GetMapping("/findOne")
         @ResponseBody
-        public Station findOne(String id) {
+        public Station findOne(Integer id) {
             return stationRepo.findById(id).get();
             
         }       
