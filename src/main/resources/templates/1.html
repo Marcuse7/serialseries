@@ -12,7 +12,13 @@
 </head>
 
 <body>
-
+<!--Beginn Logout-Button-->
+<div class="container">
+    <form class="form-signin" method="get" action="/logout">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+    </form>
+</div>
+<!--Ende Logout-Button-->
  <img src="../../images/man-holding-remote-control-10401601.jpg" 
      th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
 
@@ -22,7 +28,7 @@
     <tr>
 <!--         <th>Id</th> -->
 <!--         <th>Name</th> -->
-<!-- <!--         <th>Country</th> -->
+<!--         <th>Country</th> -->
 <!--         <th>Stationlogo</th> -->
     </tr>
     </thead>
@@ -34,7 +40,7 @@
 <!--         <td th:text="${station.country}">country</td> -->
 
 		<img th:src="@{${station.stationlogo}}"/>
-   
+    </tr>
 <!-- 		<td img th:src="@{${station.stationlogo}}">stationlogo</td> -->
 		
 		
