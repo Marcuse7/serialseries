@@ -2,9 +2,19 @@ package com.wildcodeschool.serialseries.thymeleaf.controller;
 
 
 import com.wildcodeschool.serialseries.thymeleaf.repository.SeriesRepository;
+import com.wildcodeschool.serialseries.thymeleaf.repository.UserRepository;
 import com.wildcodeschool.serialseries.thymeleaf.entity.User;
 import com.wildcodeschool.serialseries.thymeleaf.entity.Series;
+
 import javax.persistence.EntityManager;
+
+
+import java.util.HashSet;
+import java.util.Set;
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
