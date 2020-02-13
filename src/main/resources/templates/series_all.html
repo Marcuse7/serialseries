@@ -8,29 +8,58 @@
 <header th:replace="fragments/header.html :: top">
 </header>
 
-<table class="table  table-hover table-striped">
+
+
+<!-- Tabelle: wird nicht so wirklich responsiv
+
+
+<div class="table-responsive-sm">
+	<table class="table  table-hover table-striped">
+
     <thead>
     <tr>
-
-        <th width="20%">Name</th>
-        <th width="30%">Description</th>
-        <th>Pic</th>
-        <th>Options</th>
+        <th scope="col" class="w-25 p-3">Serie</th>
+        <th scope="col" class="w-25 p-3">Beschreibung</th>
+        <th scope="col" class="w-25 p-3">&nbsp;</th>
+        <th scope="col" class="w-25 p-3">Deine Listen</th>
     </tr>
     </thead>
     <tbody>
 
     <tr th:each="series : ${series}">
 
-        <td th:text="${series.name}" class="font-weight-bold">name</td>
+       
+        <th th:text="${series.name}"  scope="row">Name</td>
+
         <td th:text="${series.description}">Description</td>
-        <td><img th:src="${series.picture}" width="400px"></td>
+
+        <td><img th:src="${series.picture}" class="img-fluid rounded" alt="${series.name}"></td>
+
 
         <td><a th:href="@{/series/watch(idSeries=${series.id})}">Add to watchlist</a></td>
 
     </tr>
     </tbody>
 </table>
+</div>
+ -->
+ 
+ <!--  Card   -->
+ 
+ <div class="card-columns" th:each="series : ${series}">
+ 
+ <a th:href="@{/series/watch(idSeries=${series.id})}">
+  <div class="card">
+    <img class="card-img-top" th:src="${series.picture}" th:alt="${series.name}" th:title="${series.name}">
+    <div class="card-body">
+      <h5 th:text="${series.name}">Name</h5>
+      <p class="card-text" th:text="${series.description}">Beschreibung</p>
+    </div>
+  </div>
+  </a>
+  
+  </div>
+
 
 <footer th:replace="fragments/footer.html :: footer">
 </footer>
