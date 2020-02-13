@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+
 <title>Insert title here</title>
 </head>
 <body>
-
-
 
 	<header th:fragment="top">
 	
@@ -63,10 +61,20 @@
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Secret stuff</a>
       </li>
+<!--      &lt;!&ndash;Beginn Logout-Button&ndash;&gt;-->
+<!--      <li class="nav-item">-->
+<!--        <form class="form-signin" method="get" action="/logout">-->
+<!--          <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>-->
+<!--        </form>-->
+<!--      </li>-->
+<!--      &lt;!&ndash;Ende Logout-Button&ndash;&gt;-->
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <form class="form-signin" method="get" action="/logout">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
     </form>
   </div>
 </nav>

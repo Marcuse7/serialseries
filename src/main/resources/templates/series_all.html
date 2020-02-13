@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/external-resources.html :: headFragment">
-<title id="pageTitle">Serial Series | All Series</title>
+    <title id="pageTitle">Serial Series | All Series</title>
 </head>
 <body>
-	<header th:replace="fragments/header.html :: top">
-	</header>
+
+<header th:replace="fragments/header.html :: top">
+</header>
 
 
 
@@ -14,6 +15,7 @@
 
 <div class="table-responsive-sm">
 	<table class="table  table-hover table-striped">
+
     <thead>
     <tr>
         <th scope="col" class="w-25 p-3">Serie</th>
@@ -25,13 +27,17 @@
     <tbody>
 
     <tr th:each="series : ${series}">
+
        
         <th th:text="${series.name}"  scope="row">Name</td>
+
         <td th:text="${series.description}">Description</td>
+
         <td><img th:src="${series.picture}" class="img-fluid rounded" alt="${series.name}"></td>
 
+
         <td><a th:href="@{/series/watch(idSeries=${series.id})}">Add to watchlist</a></td>
-        
+
     </tr>
     </tbody>
 </table>
@@ -55,7 +61,7 @@
   </div>
 
 
-	<footer th:replace="fragments/footer.html :: footer">
-	</footer>
+<footer th:replace="fragments/footer.html :: footer">
+</footer>
 </body>
 </html>
