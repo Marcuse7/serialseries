@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/external-resources.html :: headFragment">
-<title id="pageTitle">Serial Series | All Series</title>
+    <title id="pageTitle">Serial Series | All Series</title>
 </head>
 <body>
-	<header th:replace="fragments/header.html :: top">
-	</header>
+<!--Beginn Logout-Button-->
+<div class="container">
+    <form class="form-signin" method="get" action="/logout">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+    </form>
+</div>
+<!--Ende Logout-Button-->
 
-	<table class="table  table-hover table-striped">
+<header th:replace="fragments/header.html :: top">
+</header>
+
+<table class="table  table-hover table-striped">
     <thead>
     <tr>
 
@@ -20,18 +28,18 @@
     <tbody>
 
     <tr th:each="series : ${series}">
-       
+
         <td th:text="${series.name}" class="font-weight-bold">name</td>
         <td th:text="${series.description}">Description</td>
         <td><img th:src="${series.picture}" width="400px"></td>
 
         <td><a th:href="@{/series/watch(idSeries=${series.id})}">Add to watchlist</a></td>
-        
+
     </tr>
     </tbody>
 </table>
 
-	<footer th:replace="fragments/footer.html :: footer">
-	</footer>
+<footer th:replace="fragments/footer.html :: footer">
+</footer>
 </body>
 </html>
