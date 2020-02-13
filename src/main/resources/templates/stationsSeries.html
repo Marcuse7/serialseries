@@ -25,6 +25,13 @@
     </style>
 </head>
 <body>
+<!--Beginn Logout-Button-->
+<div class="container">
+    <form class="form-signin" method="get" action="/logout">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+    </form>
+</div>
+<!--Ende Logout-Button-->
 <form action="/stations/1/stationsSeries" method="post">
     <input name="idStation" th:value="${station.id}" type="hidden">
     <h1 th:text="${station.name}"></h1>
