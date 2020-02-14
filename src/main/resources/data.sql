@@ -59,9 +59,10 @@ UNLOCK TABLES;
 -- Dumping data for table `user`
 --
 
-LOCK TABLES user WRITE;
-/*!40000 ALTER TABLE user DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'kadir','$2y$12$GSS3Tw1XsM4DAPB4jAKxAuNLrRjPBLCIvqFjcJCQzxAw5FeGCVNSu','USER'),(2,'monika','$2y$12$oIrQ7QvF9LGsPyP5pe5ngO5vihBdOEHVvxYkfSJAlkRTnZB46/dqO','USER'),(3,'robert','$2y$12$2nogtrSd6Ls.2py17qchWO6/hJN0cfa7qbLrUYwkBzj2LqWbK4qRW','USER'),(4,'markus','$2y$12$Vr4sPy32kxGNYHYVU1jJ7.wW3Ca1iHmVXQ37ripi65XfPhfD/j3By','USER');
+--LOCK TABLES user WRITE;
+--/*!40000 ALTER TABLE user DISABLE KEYS */;
+--INSERT INTO `user` (id, name, password, role) VALUES (1,'kadir','$2y$12$GSS3Tw1XsM4DAPB4jAKxAuNLrRjPBLCIvqFjcJCQzxAw5FeGCVNSu','USER'),(2,'monika','$2y$12$oIrQ7QvF9LGsPyP5pe5ngO5vihBdOEHVvxYkfSJAlkRTnZB46/dqO','USER'),(3,'robert','$2y$12$2nogtrSd6Ls.2py17qchWO6/hJN0cfa7qbLrUYwkBzj2LqWbK4qRW','USER'),(4,'markus','$2y$12$Vr4sPy32kxGNYHYVU1jJ7.wW3Ca1iHmVXQ37ripi65XfPhfD/j3By','USER');
+
 /*!40000 ALTER TABLE user ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
