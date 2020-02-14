@@ -14,36 +14,16 @@
 
 <h1>Station</h1>
 
-<table class="table  table-hover table-striped">
-    <thead>
-    <tr>
-<!--         <th>Id</th> -->
-<!--         <th>Name</th> -->
-<!--         <th>Country</th> -->
-<!--         <th>Stationlogo</th> -->
-    </tr>
-    </thead>
-    <tbody>
    
-    <tr th:each="station : ${stations}">
-<!--         <td th:text="${station.id}">id</td> -->
-<!--         <td th:text="${station.name}">name</td> -->
-<!--         <td th:text="${station.country}">country</td> -->
-
-		<td><img th:src="@{${station.picture}}"/> </td>
-		 <td><a th:href="@{stations/findOne/(id=${station.id})}">Zeige die Serien</a> </td>
-    </tr>
-<!-- 		<td> <img th:src="@{${station.stationlogo}}">stationlogo</td> -->
-		
-		
-<!--         <td th:text="${station.stationlogo}">stationlogo</td> -->
-<!--         < img th:src="${'station.stationlogo;base64,'+image}" alt="" /> -->
-<!--         <td th:text="${station.schedules.episode_id}">episode_id</td> -->
-<!-- 	<td> <img th:src="${station.picture}">airDate</td> -->
-		
-		 
-    </tbody>
-</table>
+    <div class="container-fluid" th:each="station : ${stations}">
+    <div class="row">
+    
+    <a th:href="@{stations/findOne/(id=${station.id})}">
+		<img th:src="@{${station.picture}}"/></a> 
+			</div>
+		</div>
+   
+    
 <footer th:replace="fragments/footer.html :: footer">
 	</footer>
 </body>
