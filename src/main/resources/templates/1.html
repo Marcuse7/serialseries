@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/external-resources.html :: headFragment">
-<title id="pageTitle">Serial Series | Station List</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <meta charset="UTF-8">
+    <title>Station List</title>
+ <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
+
 <body>
 
-
-
-<header th:replace="fragments/header.html :: top">
-	</header>
  <img src="../../images/man-holding-remote-control-10401601.jpg" 
      th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
 
-<h1>Station</h1>
-
-<table class="table  table-hover table-striped">
+<h1>Station</h1>   
+<table>
     <thead>
     <tr>
 <!--         <th>Id</th> -->
@@ -30,7 +33,7 @@
 <!--         <td th:text="${station.name}">name</td> -->
 <!--         <td th:text="${station.country}">country</td> -->
 
-		<img th:src="@{${station.picture}}"/>
+		<img th:src="@{${station.stationlogo}}"/>
     </tr>
 <!-- 		<td img th:src="@{${station.stationlogo}}">stationlogo</td> -->
 		
@@ -39,11 +42,10 @@
 <!--         < img th:src="${'station.stationlogo;base64,'+image}" alt="" /> -->
 <!--         <td th:text="${station.schedules.episode_id}">episode_id</td> -->
 <!-- 	<td> <img th:src="${station.picture}">airDate</td> -->
-		 <a button type="button" class="btn btn-light" th:href="@{stations/findOne/(id=${station.id})}">Zeige die Serien</a> 
+		 <a button type="button" class="btn btn-light" th:href="@{findOne/(id=${station.id})}">Zeige die Serien</a> 
 		 </td>
     </tbody>
 </table>
-<footer th:replace="fragments/footer.html :: footer">
-	</footer>
+
 </body>
 </html>

@@ -17,6 +17,7 @@ public class StationController {
     private StationRepository stationRepo;
 
     @GetMapping("/stations")
+
     public String getAll(Model model,
     						@RequestParam(defaultValue = "0") int page) {
 

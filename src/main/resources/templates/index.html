@@ -4,34 +4,46 @@
 <title id="pageTitle">Serial Series | Home</title>
 </head>
 <body>
+
 	<header th:replace="fragments/header.html :: top">
 	</header>
  <img src="../../images/app-entertainment-ipad-mockup-265687.jpg" title="Logo de Good Thymes" alt="Logo de Good Thymes"
      	th:attr="src=@{/images/app-entertainment-ipad-mockup-265687.jpg},title=#{logo},alt=#{logo}" />
-	<section id="top-teaser">
-<!-- 	Link stations.html -->
+
+	<!-- Diese Links gehören in die Navi?
+	
 	<p>Please select an option</p>
 		<ol>
 		  <li><a href="stations.html" th:href="@{/stations}">Station List</a></li>
 		  <li><a href="subscribe.html" th:href="@{/subscribe}">Newsletter</a></li>
 		  <li><a href="userprofile.html" th:href="@{/userprofile}">See User Profile</a></li>
 		</ol>
-		<article>
-			<h2>Don't miss this one!</h2>
-			<p>Lorem ipsum dolor sit amet ...</p>
-			<a href="#">more</a>
-		</article>
-		<article>
-			<h2>Don't miss this one!</h2>
-			<p>Lorem ipsum dolor sit amet ...</p>
-			<a href="#">more</a>
-		</article>
-		<article>
-			<h2>Don't miss this one!</h2>
-			<p>Lorem ipsum dolor sit amet ...</p>
-			<a href="#">more</a>
-		</article>
-	</section>
+		 -->
+		<br /><br />
+		
+		<div class="container-fluid">
+		<div class="row">
+	<div class="col-md-4">
+			<h2>Mission to Mars</h2>
+			<img src="https://s3.amazonaws.com/schedulesdirect/assets/p13303672_i_h11_aa.jpg" width="200px">
+			<p>Eine fiktive Mission im Jahr 2033 führt eine Crew von Wissenschaftlern und Raumfahrern auf den Mars. Das Ziel der Mission ist die Besiedelung des Planeten, eine Herausforderung, die seit Jahrzehnten schon von der Wissenschaft in Betracht gezogen wird.</p>
+			<a href="#">more on SciFi</a>
+		</div>
+		<div class="col-md-4">
+			<h2>Caillou</h2>
+			<img src="https://s3.amazonaws.com/schedulesdirect/assets/p186052_i_h11_aa.jpg" width="200px">
+			<p>Der kleine Caillou geht zusammen mit seiner Schwester Rosi jeden Tag auf Entdeckungstour, um Neues zu lernen und zu erleben. Seine Neugier hilft ihm, die Antworten auf seine Fragen zu bekommen.</p>
+			<a href="#">more on KIKA</a>
+		</div>
+		<div class="col-md-4">
+			<h2>München Mord</h2>
+			<img src="https://s3.amazonaws.com/schedulesdirect/assets/p10650301_b_h11_aa.jpg" width="200px">
+			<p>Das Münchener Trio Ludwig Schaller, Harald Neuhauser und Angelika Flierl genießt bei den Polizeikollegen nicht den besten Ruf: Dass sie trotzdem erfolgreich sind, hat mit ihren unorthodoxen Ermittlungsmethoden zu tun.</p>
+			<a href="#">more on ZDF neo</a>
+		</div>
+		</div>
+		</div>
+<br /> <br />
 
 	<footer th:replace="fragments/footer.html :: footer">
 	</footer>

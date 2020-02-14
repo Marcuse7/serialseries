@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/external-resources.html :: headFragment">
-<title id="pageTitle">Serial Series | All Series</title>
+    <title id="pageTitle">Serial Series | All Series</title>
 </head>
 <body>
-	<header th:replace="fragments/header.html :: top">
-	</header>
 
-	<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Pic</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr><td rowspan="6">Test</td></tr>
-    <tr th:each="series : ${series}">
-       <!--  <td th:text="${series.id}">id</td> -->
-        <td th:text="${series.name}">name</td>
-        <td th:text="${series.description}">Description</td>
-        <td th:text="${series.picture}">/Dummy-Bild/</td>
-        <td th:text="${series.rating}">4.5</td>
-        <td th:text="${series.language}">English</td>
-        <td><a th:href="@{/series/watch(idSeries=${series.id})}">Add to watchlist</a></td>
-        
-    </tr>
-    </tbody>
-</table>
+<header th:replace="fragments/header.html :: top">
+</header>
 
-	<footer th:replace="fragments/footer.html :: footer">
-	</footer>
+
+
+
+ 
+ <!--  Card   -->
+
+ 
+
+ <div class="container" th:each="series : ${series}">
+ 
+
+  <div class="card row">
+   <a th:href="@{watch(seriesID=${series.id})}">
+    <img class="card-img-top" th:src="${series.picture}" th:alt="${series.name}" th:title="${series.name}">
+    <div class="card-body">
+   
+      <h5 th:text="${series.name}">Name</h5>
+      <p class="card-text" th:text="${series.description}">Beschreibung</p>
+            </a>
+    </div>
+     <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  
+ </div>
+
+
+<footer th:replace="fragments/footer.html :: footer">
+</footer>
 </body>
 </html>
