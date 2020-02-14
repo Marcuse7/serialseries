@@ -118,7 +118,7 @@ public class RegisterController {
     @RequestMapping(value = "/confirm", method = RequestMethod.POST)
     public ModelAndView processConfirmationForm(ModelAndView modelAndView, BindingResult bindingResult, @RequestParam Map requestParams, RedirectAttributes redir) {
 
-        modelAndView.setViewName("confirm");
+        modelAndView.setViewName("redirect:/login");
 
         Zxcvbn passwordCheck = new Zxcvbn();
 
