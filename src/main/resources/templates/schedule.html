@@ -1,44 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <meta charset="UTF-8">
-    <title>schedule List</title>
- <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+<head th:include="fragments/external-resources.html :: headFragment">
+<title id="pageTitle">Serial Series | Home</title>
+<meta charset="utf-8">
 </head>
-
 <body>
+	<header th:replace="fragments/header.html :: top">
+		</header>
+
 <form action="/stations/schedule" method="post">
     <input name="idStation" th:value="${station.id}" type="hidden">
     <h1 th:text="${station.name}"></h1>
     
     <label for="schedule">AirDataTime:</label>
     <select id="schedule" name="id">
-        <option th:each="schedule : ${allschedules}" th:text="${schedule.air_date_time} |"
+        <option th:each="schedule : ${allschedules}" th:text="${schedule.air_date_time}"
                 th:value="${schedule.id}">AirDataTime
-        </option>
-        
-        
-        
-        
-        
+        </option> 
     </select>
     <input type="submit" value="Send">
 </form>
  <img src="../../images/man-holding-remote-control-10401601.jpg" 
      th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
-
-<h1>schedule</h1>   
+<h1>Program title by Station</h1>   
 <table>
     <thead>
     <tr>
         <th>broadcasting time</th>
 		<th>Program Title</th>
-<!--         <th>series title</th> -->
     </tr>
     </thead>
     <tbody>
@@ -46,21 +35,11 @@
     <tr th:each="schedule : ${allSchedules}">
         <td th:text="${schedule.airDateTime}">Broadcasting time</td>
         <td th:text="${schedule.episode.name}">Program Title</td>
-<!--  		<td th:text="${schedule.station.name}">series title</td> -->
-<!--         <td><a th:href="@{/station/schedule(idStation=${station_id})}">Schedule</a></td> -->
-        
-<!-- 		<td img th:src="@{${station.stationlogo}}">stationlogo</td> -->
-		
-		
-<!--         <td th:text="${station.stationlogo}">stationlogo</td> -->
-<!--         < img th:src="${'station.stationlogo;base64,'+image}" alt="" /> -->
-<!--         <td th:text="${station.schedules.episode_id}">episode_id</td> -->
-<!--    <td th:text="${schedules.episode.episode_title}">episode_title</td> -->
-<!-- 	<td> <img th:src="${station.picture}">airDate</td> -->
-<!-- 		 <a button type="button" class="btn btn-light" th:href="@{findOne/(id=${station.id})}">Zeige die Serien</a>  -->
       </tr>
     </tbody>
 </table>
 
+<footer th:replace="fragments/footer.html :: footer">
+	</footer>
 </body>
 </html>
