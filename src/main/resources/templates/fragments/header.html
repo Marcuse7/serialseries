@@ -10,22 +10,6 @@
 	
 	
   
- <!--  <nav class="container">
-		<div class="row">
-		<ul class="col-lg-4">
-		<li><a href="http://localhost:8080/series/all">Alle Serien</a></li>
-      	<li><a href="http://localhost:8080/stations">Alle Stations</a></li>
-      	<li><a href="http://localhost:8080/">Home</a></li>	
-      	</ul>
-
-     <h3  class="col-lg-4">Profile</h3>
-		<ul class="col-lg-4">
-		<li><a href="#">Sign in</a></li>
-		<li><a href="#">Register</a></li>
-		</ul>
-      </div>
-  </nav> -->
-  
   
   <!-- Bootstrap Hamburger -->
   
@@ -72,8 +56,8 @@
 <!--      </li>-->
 <!--      &lt;!&ndash;Ende Logout-Button&ndash;&gt;-->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" action="http://localhost:8080/series/search" method="post">
+      <input class="form-control mr-sm-2" type="search" placeholder="Meine Serie" aria-label="Search" id="suchbegriff" name="suchbegriff">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>&nbsp;&nbsp;
 <!--  Beginn Logout-Button  -->

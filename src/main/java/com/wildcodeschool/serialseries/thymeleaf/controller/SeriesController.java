@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -50,6 +51,15 @@ public class SeriesController {
 		out.addAttribute ("series", seriesRepository.findAll());
 		
         return "series_table";
+    }
+	
+	@PostMapping("/series/search")
+    public String showSeriesByFilter(Model out, @RequestParam String suchbegriff) {
+		
+		
+		out.addAttribute ("series", seriesRepository.findByNameContaining(suchbegriff));
+		
+        return "series_all";
     }
 	
 	
