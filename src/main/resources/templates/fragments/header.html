@@ -1,37 +1,79 @@
 <!DOCTYPE html>
-<html>
-<head>
 <html xmlns:th="http://www.thymeleaf.org">
-<title>Insert title here</title>
+<head>
+    <title>Insert title here</title>
 </head>
 <body>
-
 
 
 	<header th:fragment="top">
 	
 	
+ 
   
-  <nav class="container">
-		<div class="row">
-		<ul class="col-lg-4">
-		<li><a href="https://www.netflix.com/">netflix</a></li>
-      	<li><a href="http://www.t-online.de">www.t-online.de</a></li>
-      	<li><a href="http:www.videoload.de">Videoload</a></li>	
-      	</ul>
+  <!-- Bootstrap Hamburger -->
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="http://localhost:8080">SerialSeries</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-     <h3  class="col-lg-4">Profile</h3>
-		<ul class="col-lg-4">
-		<li><a href="#">Sign in</a></li>
-		<li><a href="#">Register</a></li>
-		</ul>
-      </div>
-  </nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost:8080">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/series/table">All series</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/series/all">Featured series</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/stations">All stations</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Take an action
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="http://localhost:8080/series/all">All Series</a>
+                        <a class="dropdown-item" href="http://localhost:8080/stations">All stations</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="http://www.netflix.com">Buy Netflix</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Secret stuff</a>
+                </li>
+                
+        </div>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="http://localhost:8080/series/search" method="post">
+      <input class="form-control mr-sm-2" type="search" placeholder="Meine Serie" aria-label="Search" id="suchbegriff" name="suchbegriff">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>&nbsp;&nbsp;
+<!--  Beginn Logout-Button  -->
+    <form class="form-signin" method="get" action="/logout">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+    </form>
+<!--  Ende Logout-Button  -->
+  </div>
+</nav>
+  
+  <!-- Ende Bootstrap-Navi -->
+  
+  
   <section class="jumbotron text-center">
 	<h1>Serial Series</h1>
-	<img th:src="@{/images/test-logo-200x100.png}"  />
+<!-- 	<img th:src="@{/images/test-logo-200x100.png}"  /> -->
 	<p>The world's most popular series administration site</p>
 	</section>
+	
+	
 
 </header>
 

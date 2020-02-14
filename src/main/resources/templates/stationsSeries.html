@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>School Registration</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/stations/1/stationsSeries" method="post">
+    <input name="idStation" th:value="${station.id}" type="hidden">
+    <h1 th:text="${station.name}"></h1>
+    <label for="series">Register a student:</label>
+    <select id="series" name="id">
+        <option th:each="series : ${allSeries}" th:text="|${serie.Name} ${series.id}|"
+                th:value="${series.id}">serie name
+        </option>
+    </select>
+    <input type="submit" value="Send">
+</form>
+<h3>Students:</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>name</th>
+<!--         <th>Last name</th> -->
+<!--         <th>Birthday</th> -->
+<!--         <th>Birth place</th> -->
+<!--         <th>Biography</th> -->
+<!--         <th>Muggle</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="series : ${stationSeries}">
+        <td th:text="${series.id}">id</td>
+        <td th:text="${series.Name}">name</td>
+<!--         <td th:text="${wizard.lastName}">last name</td> -->
+<!--         <td th:text="${wizard.birthday}">birthday</td> -->
+<!--         <td th:text="${wizard.birthPlace}">birth place</td> -->
+<!--         <td th:text="${wizard.biography}">biography</td> -->
+<!--         <td th:text="${wizard.muggle}">muggle</td> -->
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="/stations/1">Return to school's list</a>
+</body>
+</html>

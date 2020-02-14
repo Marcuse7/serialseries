@@ -1,20 +1,58 @@
 package com.wildcodeschool.serialseries.thymeleaf.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Episode {
 	@Id
-	private int id;
-	private int number;
-	private int season;
+	@Column(columnDefinition="VARCHAR(14)")
+	private String id;
+	
+	@Column(columnDefinition="VARCHAR(120)", nullable=false)
+	private String name;
+	
+	@Column(columnDefinition="VARCHAR(150)", nullable=false)
+	private String episodeTitle;
+	
+	@Column(nullable=true)
+	private Integer number;
+	
+	@Column(nullable=true)
+	private Integer season;
+	
+	@Column(columnDefinition="VARCHAR(3)", nullable=false)
+	private String language;
+	
+	@Column(columnDefinition="VARCHAR(1000)")
 	private String description;
+	
+	@Column(columnDefinition="VARCHAR(200)")
 	private String picture;
-	private float rating;
-	private boolean wanted;
+	
+	private Float rating;
+	
+	@Column(nullable=true)
+	private Boolean is_series;
+	
+	@Column(nullable=true)
+	private Boolean wanted;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="series_id")
+	private Series series;
+	
+	@OneToMany(mappedBy="episode")
+	private List<Schedule> schedules;
 
-	public Episode(int id, int number, int season, String description, String picture, float rating) {
+	public Episode(String id, Integer number, Integer season, String description, String picture, Float rating) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -29,7 +67,7 @@ public class Episode {
 	}
 
 
-	public Episode(int id, int number, int season, String description, String picture, float rating, boolean wanted) {
+	public Episode(String id, Integer number, Integer season, String description, String picture, Float rating, Boolean wanted) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -40,27 +78,35 @@ public class Episode {
 		this.wanted = wanted;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public int getNumber() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(Integer number) {
 		this.number = number;
 	}
 
-	public int getSeason() {
+	public Integer getSeason() {
 		return season;
 	}
 
-	public void setSeason(int season) {
+	public void setSeason(Integer season) {
 		this.season = season;
 	}
 
@@ -80,22 +126,32 @@ public class Episode {
 		this.picture = picture;
 	}
 
-	public float getRating() {
+	public Float getRating() {
 		return rating;
 	}
 
-	public void setRating(float rating) {
+	public void setRating(Float rating) {
 		this.rating = rating;
 	}
 
-	public boolean isWanted() {
+	public Boolean isWanted() {
 		return wanted;
 	}
 
-	public void setWanted(boolean wanted) {
+	public void setWanted(Boolean wanted) {
 		this.wanted = wanted;
 	}
 
+	public Boolean isIs_series() {
+		return is_series;
+	}
 
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
+	}
 
 }

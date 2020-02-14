@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/external-resources.html :: headFragment">
+<title id="pageTitle">Serial Series | Station List</title>
+</head>
+<body>
+
+
+
+<header th:replace="fragments/header.html :: top">
+	</header>
+ <img src="../../images/man-holding-remote-control-10401601.jpg" 
+     th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
+
+<h1>Station</h1>
+
+   <div class="container-fluid">
+   <div class="row">
+    <div class="col-sm-4" th:each="station : ${stations}">
+    
+    <a th:href="@{stations/findOne/(id=${station.id})}">
+		<img style="display:inline;" th:src="@{${station.picture}}"/></a> 
+			</div>
+		</div>
+		</div>
+		
+		
+   
+    
+<footer th:replace="fragments/footer.html :: footer">
+	</footer>
+</body>
+</html>

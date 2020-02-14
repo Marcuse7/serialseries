@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <meta charset="UTF-8">
+    <title>Station List</title>
+ <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+
+ <img src="../../images/man-holding-remote-control-10401601.jpg" 
+     th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
+
+<h1>Station</h1>   
+<table>
+    <thead>
+    <tr>
+<!--         <th>Id</th> -->
+<!--         <th>Name</th> -->
+<!--         <th>Country</th> -->
+<!--         <th>Stationlogo</th> -->
+    </tr>
+    </thead>
+    <tbody>
+   
+    <tr th:each="station : ${stations}">
+<!--         <td th:text="${station.id}">id</td> -->
+<!--         <td th:text="${station.name}">name</td> -->
+<!--         <td th:text="${station.country}">country</td> -->
+
+		<img th:src="@{${station.stationlogo}}"/>
+    </tr>
+<!-- 		<td img th:src="@{${station.stationlogo}}">stationlogo</td> -->
+		
+		
+<!--         <td th:text="${station.stationlogo}">stationlogo</td> -->
+<!--         < img th:src="${'station.stationlogo;base64,'+image}" alt="" /> -->
+<!--         <td th:text="${station.schedules.episode_id}">episode_id</td> -->
+<!-- 	<td> <img th:src="${station.picture}">airDate</td> -->
+		 <a button type="button" class="btn btn-light" th:href="@{findOne/(id=${station.id})}">Zeige die Serien</a> 
+		 </td>
+    </tbody>
+</table>
+
+</body>
+</html>
