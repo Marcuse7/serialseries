@@ -30,17 +30,18 @@
 <!--         <td th:text="${station.name}">name</td> -->
 <!--         <td th:text="${station.country}">country</td> -->
 
-		<img th:src="@{${station.picture}}"/>
+		<td><img th:src="@{${station.picture}}"/> </td>
+		 <td><a th:href="@{stations/findOne/(id=${station.id})}">Zeige die Serien</a> </td>
     </tr>
-<!-- 		<td img th:src="@{${station.stationlogo}}">stationlogo</td> -->
+<!-- 		<td> <img th:src="@{${station.stationlogo}}">stationlogo</td> -->
 		
 		
 <!--         <td th:text="${station.stationlogo}">stationlogo</td> -->
 <!--         < img th:src="${'station.stationlogo;base64,'+image}" alt="" /> -->
 <!--         <td th:text="${station.schedules.episode_id}">episode_id</td> -->
 <!-- 	<td> <img th:src="${station.picture}">airDate</td> -->
-		 <a button type="button" class="btn btn-light" th:href="@{stations/findOne/(id=${station.id})}">Zeige die Serien</a> 
-		 </td>
+		
+		 
     </tbody>
 </table>
 <footer th:replace="fragments/footer.html :: footer">
