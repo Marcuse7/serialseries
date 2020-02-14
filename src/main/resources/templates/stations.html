@@ -14,14 +14,17 @@
 
 <h1>Station</h1>
 
-   
-    <div class="container-fluid" th:each="station : ${stations}">
-    <div class="row">
+   <div class="container-fluid">
+   <div class="row">
+    <div class="col-sm-4" th:each="station : ${stations}">
     
     <a th:href="@{stations/findOne/(id=${station.id})}">
-		<img th:src="@{${station.picture}}"/></a> 
+		<img style="display:inline;" th:src="@{${station.picture}}"/></a> 
 			</div>
 		</div>
+		</div>
+		
+		
    
     
 <footer th:replace="fragments/footer.html :: footer">

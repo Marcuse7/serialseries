@@ -15,11 +15,17 @@
 <form action="/stations/schedule" method="post">
     <input name="idStation" th:value="${station.id}" type="hidden">
     <h1 th:text="${station.name}"></h1>
+    
     <label for="schedule">AirDataTime:</label>
     <select id="schedule" name="id">
-        <option th:each="schedule : ${allschedules}" th:text="|${schedule.air_date_time} ${schedule.episoden_id}|"
+        <option th:each="schedule : ${allschedules}" th:text="${schedule.air_date_time} |"
                 th:value="${schedule.id}">AirDataTime
         </option>
+        
+        
+        
+        
+        
     </select>
     <input type="submit" value="Send">
 </form>
