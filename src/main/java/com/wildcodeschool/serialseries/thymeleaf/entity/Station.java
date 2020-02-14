@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -11,7 +12,7 @@ import javax.persistence.OneToMany;
 public class Station {
 	@Id
 	@Column(columnDefinition="VARCHAR(12)")
-	private int id;
+	private Integer id;
 	
 	@Column(nullable=false)
 	private String name;
@@ -24,7 +25,7 @@ public class Station {
 	@Column(columnDefinition="VARCHAR(255)")
 	private String picture;
 	
-	@OneToMany(mappedBy="station")
+	@OneToMany(mappedBy="station", fetch=FetchType.EAGER) 
 	private List<Schedule> schedules;
 
 
@@ -36,7 +37,7 @@ public class Station {
 		this.schedules = schedules;
 	}
 
-	public Station(int id, String name, String country,String picture, Boolean available) {
+	public Station(Integer id, String name, String country,String picture, Boolean available) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -49,7 +50,7 @@ public class Station {
 
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

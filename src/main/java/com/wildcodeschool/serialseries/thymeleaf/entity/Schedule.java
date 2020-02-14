@@ -23,7 +23,7 @@ public class Schedule {
 	@Column(nullable=false)
 	private LocalDateTime airDateTime;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="station_id")
 	private Station station;
 	
@@ -39,7 +39,7 @@ public class Schedule {
 	public void setEpisode(Episode episode) {
 		this.episode = episode;
 	}
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="episode_id")
 	private Episode episode;
 

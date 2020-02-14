@@ -23,10 +23,10 @@ public class Episode {
 	private String episodeTitle;
 	
 	@Column(nullable=true)
-	private int number;
+	private Integer number;
 	
 	@Column(nullable=true)
-	private int season;
+	private Integer season;
 	
 	@Column(columnDefinition="VARCHAR(3)", nullable=false)
 	private String language;
@@ -37,22 +37,22 @@ public class Episode {
 	@Column(columnDefinition="VARCHAR(200)")
 	private String picture;
 	
-	private float rating;
+	private Float rating;
 	
 	@Column(nullable=true)
-	private boolean is_series;
+	private Boolean is_series;
 	
 	@Column(nullable=true)
-	private boolean wanted;
+	private Boolean wanted;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="series_id")
 	private Series series;
 	
 	@OneToMany(mappedBy="episode")
 	private List<Schedule> schedules;
 
-	public Episode(String id, int number, int season, String description, String picture, float rating) {
+	public Episode(String id, Integer number, Integer season, String description, String picture, Float rating) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -67,7 +67,7 @@ public class Episode {
 	}
 
 
-	public Episode(String id, int number, int season, String description, String picture, float rating, boolean wanted) {
+	public Episode(String id, Integer number, Integer season, String description, String picture, Float rating, Boolean wanted) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -94,19 +94,19 @@ public class Episode {
 		this.name = name;
 	}
 
-	public int getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(Integer number) {
 		this.number = number;
 	}
 
-	public int getSeason() {
+	public Integer getSeason() {
 		return season;
 	}
 
-	public void setSeason(int season) {
+	public void setSeason(Integer season) {
 		this.season = season;
 	}
 
@@ -126,23 +126,23 @@ public class Episode {
 		this.picture = picture;
 	}
 
-	public float getRating() {
+	public Float getRating() {
 		return rating;
 	}
 
-	public void setRating(float rating) {
+	public void setRating(Float rating) {
 		this.rating = rating;
 	}
 
-	public boolean isWanted() {
+	public Boolean isWanted() {
 		return wanted;
 	}
 
-	public void setWanted(boolean wanted) {
+	public void setWanted(Boolean wanted) {
 		this.wanted = wanted;
 	}
 
-	public boolean isIs_series() {
+	public Boolean isIs_series() {
 		return is_series;
 	}
 

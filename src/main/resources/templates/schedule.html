@@ -30,19 +30,17 @@
 <table>
     <thead>
     <tr>
-<!--         <th>Id</th> -->
         <th>broadcasting time</th>
-<!-- 		<th>name</th> -->
-        <th>series title</th>
+		<th>Program Title</th>
+<!--         <th>series title</th> -->
     </tr>
     </thead>
     <tbody>
    
     <tr th:each="schedule : ${allSchedules}">
-<!--         <td th:text="${schedule.id}">id</td> -->
-        <td th:text="${schedule.airDateTime}">broadcasting time</td>
-<!--         <td th:text="${schedule.episode?.name}">NameSerie</td> -->
- 		<td th:text="${schedule.station.name}">series title</td>
+        <td th:text="${schedule.airDateTime}">Broadcasting time</td>
+        <td th:text="${schedule.episode.name}">Program Title</td>
+<!--  		<td th:text="${schedule.station.name}">series title</td> -->
 <!--         <td><a th:href="@{/station/schedule(idStation=${station_id})}">Schedule</a></td> -->
         
 <!-- 		<td img th:src="@{${station.stationlogo}}">stationlogo</td> -->

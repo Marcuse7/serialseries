@@ -1,7 +1,5 @@
 package com.wildcodeschool.serialseries.thymeleaf.controller;
 
-//import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -17,11 +15,10 @@ public class StationController {
 	
     @Autowired
     private StationRepository stationRepo;
-    //private SeriesRepository  seriesRepo;
 
     @GetMapping("/stations")
-
-    public String getAll(Model model, @RequestParam(defaultValue = "0") int page) {
+    public String getAll(Model model,
+    						@RequestParam(defaultValue = "0") int page) {
 
         model.addAttribute("stations", stationRepo.findAll(PageRequest.of(page, 6)));
         //model.addAttribute("series_name", seriesRepo.findAll());
@@ -33,22 +30,5 @@ public class StationController {
         @ResponseBody
         public Station findOne(Integer id) {
             return stationRepo.findById(id).get();
-            
-        }       
+       }
 }
-
-        
-        //       @GetMapping("/findOne")
-//       @ResponseBody
-//       return StationRepository.findById(id).get();
-// 	  	public String getAlEpsiode(Model model) {
-//		model.addAllAttributes("findone,")   	
-//    	return findOne;
-    	
-    
-//    public Episode findOne(long id) {
-//    	return Episode.class.getField("episode_id");
-//    	Cannot make a static reference to the non-static method findById(Long) from the type 
-//        return StationRepository.findById(id).get();
-
-    
