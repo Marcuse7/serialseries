@@ -36,7 +36,7 @@ public class StationSerieController {
 
     @GetMapping("/stations/1/stationsSeries")
     public String inscription(Model out,
-                              @RequestParam String station_id) {
+                              @RequestParam Integer station_id) {
 
         Optional<Station> optionalStation = stationRepo.findById(station_id);
         Station station = new Station();
@@ -59,12 +59,11 @@ public class StationSerieController {
         }
         System.out.println(series);
         out.addAttribute("stationSeries", series);
-
         return "serie";
     }
 
     @PostMapping("/stations/1/stationsSeries")
-    public String inscription(@RequestParam String station_id,
+    public String inscription(@RequestParam Integer station_id,
                               @RequestParam String idSeries) {
 
         Optional<Series> optionalSerie = seriesRepo.findById(idSeries);
@@ -74,8 +73,6 @@ public class StationSerieController {
             Optional<Station> optionalStation = stationRepo.findById(station_id);
             if (optionalStation.isPresent()) {
                 Station station = optionalStation.get();
-
-                // call the method setSchool in Wizard
                 Method method = getMethod(serie, "setStation",
                         new Class[]{Station.class});
                 if (method != null) {
@@ -89,7 +86,7 @@ public class StationSerieController {
             }
         }
 
-        return "redirect:/station/1/register?idStation=" + station_id;
+        return "redirect:/station/1/findOne?id=" + station_id;
     }
 
     public Method getMethod(Object obj, String methodName, Class[] args) {

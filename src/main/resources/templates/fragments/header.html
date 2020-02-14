@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Insert title here</title>
 </head>
@@ -12,7 +11,6 @@
 
     <!-- Bootstrap Hamburger -->
 
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="http://localhost:8080">SerialSeries</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -20,91 +18,59 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="http://localhost:8080">SerialSeries</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8080">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/series/table">All series</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/series/all">Featured series</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/stations">All stations</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Take an action
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="http://localhost:8080/series/all">All Series</a>
-                            <a class="dropdown-item" href="http://localhost:8080/stations">All stations</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="http://www.netflix.com">Buy Netflix</a>
-                        </div>
-                    </li>
-
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Secret stuff</a>
-                    </li>
-                    <!--      &lt;!&ndash;Beginn Logout-Button&ndash;&gt;-->
-                    <!--      <li class="nav-item">-->
-                    <!--        <form class="form-signin" method="get" action="/logout">-->
-                    <!--          <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>-->
-                    <!--        </form>-->
-                    <!--      </li>-->
-                    <!--      &lt;!&ndash;Ende Logout-Button&ndash;&gt;-->
-                </ul>
-                <form class="form-inline my-2 my-lg-0" action="http://localhost:8080/series/search" method="post">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Meine Serie" aria-label="Search"
-                           id="suchbegriff" name="suchbegriff">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>&nbsp;&nbsp;
-                <!--  Beginn Logout-Button  -->
-<!--                <form class="form-signin" method="get" action="/logout">-->
-<!--                    <button class="btn btn-primary btn-block" type="submit">Logout</button>-->
-<!--                </form>-->
-
-                <form sec:authorize="!isAuthenticated()" class="form-signin">
-                    <a class="btn btn-primary btn-block" th:href="@{/login}">Login</a>
-                </form>
-                <form sec:authorize="isAuthenticated()" class="form-signin dropdown">
-                    <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" sec:authentication="name">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost:8080">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/series/table">All series</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/series/all">Featured series</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/stations">All stations</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Take an action
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="pl-3" th:href="@{/password}">Passwort ändern</a>
+                        <a class="dropdown-item" href="http://localhost:8080/series/all">All Series</a>
+                        <a class="dropdown-item" href="http://localhost:8080/stations">All stations</a>
                         <div class="dropdown-divider"></div>
-                        <a class="pl-3" th:href="@{/register}">Registrieren</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="pl-3" th:href="@{/logout}">Logout</a>
+                        <a class="dropdown-item" href="http://www.netflix.com">Buy Netflix</a>
                     </div>
-                </form>
-                <!--  Ende Logout-Button  -->
-            </div>
-        </nav>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Secret stuff</a>
+                </li>
+            </ul>
+        </div>
 
-        <!-- Ende Bootstrap-Navi -->
+        <form class="form-inline my-2 my-lg-0" action="http://localhost:8080/series/search" method="post">
+            <input class="form-control mr-sm-2" type="search" placeholder="Meine Serie" aria-label="Search"
+                   id="suchbegriff" name="suchbegriff">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>&nbsp;&nbsp;
+        <!--  Beginn Logout-Button  -->
+        <form class="form-signin" method="get" action="/logout">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+        </form>
+        <!--  Ende Logout-Button  -->
+        </div>
+    </nav>
+
+    <!-- Ende Bootstrap-Navi -->
 
 
-        <section class="jumbotron text-center">
-            <h1>Serial Series</h1>
-            <!-- 	<img th:src="@{/images/test-logo-200x100.png}"  /> -->
-            <p>The world's most popular series administration site</p>
-        </section>
+    <section class="jumbotron text-center">
+        <h1>Serial Series</h1>
+        <!-- 	<img th:src="@{/images/test-logo-200x100.png}"  /> -->
+        <p>The world's most popular series administration site</p>
+    </section>
 
 
 </header>
