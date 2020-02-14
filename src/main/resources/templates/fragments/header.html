@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Insert title here</title>
 </head>
@@ -56,8 +56,25 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>&nbsp;&nbsp;
         <!--  Beginn Logout-Button  -->
-        <form class="form-signin" method="get" action="/logout">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+        <!--                <form class="form-signin" method="get" action="/logout">-->
+        <!--                    <button class="btn btn-primary btn-block" type="submit">Logout</button>-->
+        <!--                </form>-->
+
+        <form sec:authorize="!isAuthenticated()" class="form-signin">
+            <a class="btn btn-primary btn-block" th:href="@{/login}">Login</a>
+        </form>
+        <form sec:authorize="isAuthenticated()" class="form-signin dropdown">
+            <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false" sec:authentication="name">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="pl-3" th:href="@{/password}">Passwort ändern</a>
+                <div class="dropdown-divider"></div>
+                <a class="pl-3" th:href="@{/register}">Registrieren</a>
+                <div class="dropdown-divider"></div>
+                <a class="pl-3" th:href="@{/logout}">Logout</a>
+            </div>
         </form>
         <!--  Ende Logout-Button  -->
         </div>
