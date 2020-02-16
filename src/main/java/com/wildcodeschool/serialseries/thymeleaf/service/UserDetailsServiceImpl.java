@@ -31,6 +31,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.adminPassword = adminPassword;
     }
 
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public User findByConfirmationToken(String confirmationToken) {
+        return userRepository.findByConfirmationToken(confirmationToken);
+    }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
