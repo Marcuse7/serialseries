@@ -57,7 +57,7 @@ public class SeriesController {
     public String showSeriesByFilter(Model out, @RequestParam String suchbegriff) {
 		
 		
-		out.addAttribute ("series", seriesRepository.findByNameContaining(suchbegriff));
+		out.addAttribute ("series", seriesRepository.findByNameOrDescriptionContaining(suchbegriff, suchbegriff));
 		
         return "series_all";
     }
@@ -65,7 +65,9 @@ public class SeriesController {
 	
 	@GetMapping("/series/watch")
 	@Transactional
-	public String addSubscriber(@RequestParam String seriesID) {
+	public String addSubscriber(
+		Model out, 
+			@RequestParam String seriesID) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User loggedOnUser = (User) authentication.getPrincipal();
@@ -74,6 +76,8 @@ public class SeriesController {
 		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
 		
 		series.subscribe(user);
+		
+		out.addAttribute ("series", series);
 
 		return "series_all";
 	}
