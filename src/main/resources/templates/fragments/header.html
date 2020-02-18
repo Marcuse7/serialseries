@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Insert title here</title>
 </head>
@@ -55,42 +55,50 @@
                    id="suchbegriff" name="suchbegriff">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>&nbsp;&nbsp;
-        <!--  Beginn Logout-Button  -->
-        <!--                <form class="form-signin" method="get" action="/logout">-->
-        <!--                    <button class="btn btn-primary btn-block" type="submit">Logout</button>-->
-        <!--                </form>-->
 
-        <form sec:authorize="!isAuthenticated()" class="form-signin">
-            <a class="btn btn-primary btn-block" th:href="@{/login}">Login</a>
-        </form>
-        <form sec:authorize="isAuthenticated()" class="form-signin dropdown">
-            <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button"
-               data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false" sec:authentication="name">
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="pl-3" th:href="@{/password}">Passwort ändern</a>
-                <div class="dropdown-divider"></div>
-                <a class="pl-3" th:href="@{/register}">Registrieren</a>
-                <div class="dropdown-divider"></div>
-                <a class="pl-3" th:href="@{/logout}">Logout</a>
+        <!--        Begin Login/Logout Button-->
+        <div class="col-xs-12">
+            <button sec:authorize="!isAuthenticated()" class="btn btn-primary btn-block" data-target="#loginModal" data-toggle="modal"
+                    th:href="@{/login}">Anmelden
+            </button>
+            <form sec:authorize="isAuthenticated()" class="form-signin dropdown">
+                <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Du bist eingeloggt</a>
+                <div class="dropdown-menu pull-right" role="menu" aria-labelledby="navbarDropdown">
+                    <a class="pl-3"><b>Benutzer:</b></a><br>
+                    <a class="pl-3" sec:authentication="name"></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">Lorem ipsum</a>
+                    <a class="pl-3" th:href="@{/logout}">Abmelden</a>
+                </div>
+            </form>
+            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="loginModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Anmelden</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form th:replace="fragments/login-form.html :: login-form">
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-        <!--  Ende Logout-Button  -->
         </div>
+        <!--        Ende Login/Logout Button-->
+
     </nav>
 
     <!-- Ende Bootstrap-Navi -->
-
 
     <section class="jumbotron text-center">
         <h1>Serial Series</h1>
         <!-- 	<img th:src="@{/images/test-logo-200x100.png}"  /> -->
         <p>The world's most popular series administration site</p>
     </section>
-
-
 </header>
-
 </body>
 </html>

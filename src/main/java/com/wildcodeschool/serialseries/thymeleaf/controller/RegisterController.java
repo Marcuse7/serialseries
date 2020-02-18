@@ -1,5 +1,5 @@
-/**
- * Created by AEr on 14.02.20.
+/*
+  Created by AEr on 14.02.20.
  */
 
 
@@ -124,7 +124,7 @@ public class RegisterController {
 
         Strength strength = passwordCheck.measure((String) requestParams.get("password"));
 
-        if (strength.getScore() < 3) {
+        if (strength.getScore() < 2) {
             bindingResult.reject("password");
 
             redir.addFlashAttribute("errorMessage", "Your password is too weak.  Choose a stronger one.");

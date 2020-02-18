@@ -1,5 +1,5 @@
-/**
- * Created by AEr on 14.02.20.
+/*
+  Created by AEr on 14.02.20.
  */
 
 
@@ -24,7 +24,7 @@ public class EmailService {
     @Async
     public void sendEmail(SimpleMailMessage email) {
         System.out.println(email.toString());
-//        mailSender.send(email);
+        mailSender.send(email);
     }
 
 }
