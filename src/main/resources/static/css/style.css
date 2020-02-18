@@ -12,13 +12,20 @@ a {
 	color: #DD6347;
 	text-decoration:none;
 	}
-a:visited  {
+/*a:visited  {
 	color: #AA8072;
-	}
+	}*/
 a:hover {
 	opacity: 0.5;
 }
 
 li {
 	list-style-type:none;
+}
+
+.dropdown-left {
+  right: 0;
+  left: auto;
+  padding-left: 1px;
+  padding-right: 1px;
 }
