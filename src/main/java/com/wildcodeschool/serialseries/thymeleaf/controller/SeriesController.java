@@ -2,18 +2,12 @@ package com.wildcodeschool.serialseries.thymeleaf.controller;
 
 
 import com.wildcodeschool.serialseries.thymeleaf.repository.SeriesRepository;
-import com.wildcodeschool.serialseries.thymeleaf.repository.UserRepository;
 import com.wildcodeschool.serialseries.thymeleaf.entity.User;
 import com.wildcodeschool.serialseries.thymeleaf.entity.Series;
 
-import javax.persistence.EntityManager;
-
-
-import java.util.HashSet;
 import java.util.Set;
 
-
-
+import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -34,7 +28,7 @@ public class SeriesController {
 
 	@Autowired
 	private EntityManager entityManager;
-
+	
 	@GetMapping("/series/all")
     public String showAllSeries(Model out) {
 		
@@ -45,10 +39,19 @@ public class SeriesController {
     }
 	
 	@GetMapping("/series/table")
+	@Transactional
     public String showAllSeriesTable(Model out) {
 		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User loggedOnUser = (User) authentication.getPrincipal();
+		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
 		
 		out.addAttribute ("series", seriesRepository.findAll());
+		entityManager.refresh(user);
+		Set<Series> subscriptions = user.getSubscriptions();
+		out.addAttribute("subscriptions", subscriptions);
+		
+		out.addAttribute("user", user);
 		
         return "series_table";
     }
@@ -57,29 +60,50 @@ public class SeriesController {
     public String showSeriesByFilter(Model out, @RequestParam String suchbegriff) {
 		
 		
-		out.addAttribute ("series", seriesRepository.findByNameContaining(suchbegriff));
+		out.addAttribute ("series", seriesRepository.findByNameOrDescriptionContaining(suchbegriff, suchbegriff));
 		
         return "series_all";
     }
 	
 	
-	@GetMapping("/series/watch")
+	@GetMapping("/series/subscribe")
 	@Transactional
-	public String addSubscriber(@RequestParam String seriesID) {
+	public String addSubscriber(
+		Model out, 
+			@RequestParam String seriesID) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User loggedOnUser = (User) authentication.getPrincipal();
+		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
 
 		Series series = findOne(seriesID);  // get Series object for the id from requestparam
-		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
 		
 		series.subscribe(user);
+		
+		out.addAttribute ("series", series);
 
+		return "series_all";
+	}
+	
+	@GetMapping("/series/unsubscribe")
+	@Transactional
+	public String removeSubscriber(@RequestParam String seriesID) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User loggedOnUser = (User) authentication.getPrincipal();
+		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
+		
+		Series series = findOne(seriesID);  // get Series object for the id from requestparam
+		
+		series.unSubscribe(user);
+		
 		return "series_all";
 	}
 	
 	public Series findOne(String id) {
         return seriesRepository.findById(id).get();
         
-    }    
+    }
+	
+
 }

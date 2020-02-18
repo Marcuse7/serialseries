@@ -156,6 +156,18 @@ public class Series {
 			System.out.print("Series.subscribers was null");
 		}
 		subscribers.add(user);
-		System.out.println("User " + user.getName() + " added to series subscription");
+		System.out.println("User " + user.getName() + " subscribed to series " + this.name);
+	}
+	
+	public void unSubscribe(User user) {
+		subscribers.remove(user);
+		System.out.println("User " + user.getName() + " unsubscribed from series " + this.name);
+	}
+	
+	public boolean isSubscribedBy(User user) {
+		if (subscribers == null) {
+			return false;
+		}
+		return subscribers.contains(user);
 	}
 }
