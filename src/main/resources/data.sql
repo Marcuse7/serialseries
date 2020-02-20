@@ -88,7 +88,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (id, first_name, last_name, email, password, role, enabled) VALUES (1,'kadir','erucu','meinschool17@gmail.com','$2y$12$GSS3Tw1XsM4DAPB4jAKxAuNLrRjPBLCIvqFjcJCQzxAw5FeGCVNSu','USER',true),(2,'monika','messerer','monika.messerer@t-online.de','$2y$12$oIrQ7QvF9LGsPyP5pe5ngO5vihBdOEHVvxYkfSJAlkRTnZB46/dqO','USER',true),(3,'robert','duschek','robert.duschek@gmx.net','$2y$12$2nogtrSd6Ls.2py17qchWO6/hJN0cfa7qbLrUYwkBzj2LqWbK4qRW','USER',true),(4,'markus','heinrichs','marcuse7@gmx.de','$2y$12$Vr4sPy32kxGNYHYVU1jJ7.wW3Ca1iHmVXQ37ripi65XfPhfD/j3By','USER',true);
+INSERT INTO `user` (id, first_name, last_name, name, email, password, role, enabled) VALUES (1,'kadir','erucu','meinschool17@gmail.com','meinschool17@gmail.com','$2y$12$GSS3Tw1XsM4DAPB4jAKxAuNLrRjPBLCIvqFjcJCQzxAw5FeGCVNSu','USER',true),(2,'monika','messerer','monika.messerer@t-online.de','monika.messerer@t-online.de','$2y$12$oIrQ7QvF9LGsPyP5pe5ngO5vihBdOEHVvxYkfSJAlkRTnZB46/dqO','USER',true),(3,'robert','duschek','robert.duschek@gmx.net','robert.duschek@gmx.net','$2y$12$2nogtrSd6Ls.2py17qchWO6/hJN0cfa7qbLrUYwkBzj2LqWbK4qRW','USER',true),(4,'markus','heinrichs','marcuse7@gmx.de','marcuse7@gmx.de','$2y$12$Vr4sPy32kxGNYHYVU1jJ7.wW3Ca1iHmVXQ37ripi65XfPhfD/j3By','USER',true);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -17,8 +17,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
-@Getter
+//@Table(name = "user")
+      @Getter
 @Setter
 public class User implements UserDetails {
 
