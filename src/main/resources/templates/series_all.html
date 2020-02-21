@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/external-resources.html :: headFragment">
-    <title id="pageTitle">Serial Series | All Series</title>
+<title id="pageTitle">Serial Series | All Series</title>
 </head>
 <body>
 
-<header th:replace="fragments/header.html :: top">
-</header>
+	<header th:replace="fragments/header.html :: top"> </header>
+
+	<!--  Card   -->
+
+	<div th:each="serie : ${series}">
+
+
+		<div class="card" style="width: 70%; margin: 0 auto 10px auto;">
+			<!--    <a th:href="@{subscribe(seriesId=${series.id})}"> -->
+			<img class="card-img-top" th:src="${serie.picture}"
+				th:alt="${serie.name}" th:title="${serie.name}"
+			>
+			<div class="card-body">
+
+				<h5 th:text="${serie.name}">Name</h5>
+				<p class="card-text" th:text="${serie.description}"
+					style="text-overflow: ellipsis; overflow: hidden; max-height: 7.5em;"
+				>Beschreibung</p>
+				<!--             </a> -->
+			</div>
+			<div class="card-footer">
+				<small class="text-muted">Last updated 3 mins ago</small>
+			</div>
+
+
+		</div>
+	</div>
 
 
 
-
- 
- <!--  Card   -->
-
- 
-
- <div th:each="series : ${series}">
- 
-
-  <div class="card" style="width:70%; margin:0 auto 10px auto;">
-   <a th:href="@{subscribe(seriesID=${series.id})}">
-    <img class="card-img-top" th:src="${series.picture}" th:alt="${series.name}" th:title="${series.name}">
-    <div class="card-body">
-   
-      <h5 th:text="${series.name}">Name</h5>
-      <p class="card-text" th:text="${series.description}" style="text-overflow: ellipsis; overflow: hidden; max-height:7.5em;">Beschreibung</p>
-            </a>
-    </div>
-     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
- 
-
-</div></div>
- 
-
-
-<footer th:replace="fragments/footer.html :: footer">
-</footer>
+	<footer th:replace="fragments/footer.html :: footer"> </footer>
 </body>
 </html>
