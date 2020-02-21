@@ -30,8 +30,10 @@
 
     <tr th:each="series : ${series}">
 
-        <td th:text="${series.name}" scope="row"></td>
-
+        <td>
+        <a th:href="${'/series/one?=' + ${series.id}}"><span th:text="${series.name}" scope="row"></span>Name</a>
+		</td>
+		
         <td th:text="${series.description}">Description</td>
 
         <td><img th:src="${series.picture}" class="img-fluid rounded" alt="${series.name}"></td>
