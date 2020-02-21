@@ -32,11 +32,16 @@ public class SeriesController {
 	@GetMapping("/series/all")
     public String showAllSeries(Model out) {
 		
-		
 		out.addAttribute ("series", seriesRepository.findAll());
 		
         return "series_all";
     }
+	
+	@GetMapping("/series/one")
+	public String showOneSeries(Model out, @RequestParam String seriesID) {
+		out.addAttribute ("series", seriesRepository.findById(seriesID));
+		return "series_all";
+	}
 	
 	@GetMapping("/series/table")
 	@Transactional
