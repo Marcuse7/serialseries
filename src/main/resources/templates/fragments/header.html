@@ -4,17 +4,6 @@
 <head>
     <meta charset="utf-8">
     <title>Insert title here</title>
-    <!--	Auto Loading Bootstrap Modal on Page Load    -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-	$(document).ready(function(){
-		$("#myModal").modal('show');
-	});
-
-    </script>
-    <!--	Ende Auto Loading Bootstrap Modal on Page Load    -->
 </head>
 <body>
 
@@ -71,80 +60,81 @@
             <button sec:authorize="!isAuthenticated()" class="btn btn-primary btn-block" data-target="#loginModal" data-toggle="modal"
                     th:href="@{/login}">Anmelden
             </button>
-            <form sec:authorize="isAuthenticated()" class="form-signin dropdown">
-                <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                   data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Du bist eingeloggt</a>
-                <div class="dropdown-menu pull-right" role="menu" aria-labelledby="navbarDropdown">
-                    <a class="pl-3"><b>Benutzer:</b></a><br>
-                    <a class="pl-3" sec:authentication="name"></a>
-                    <div class="dropdown-divider"></div>
-                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">1. Lorem ipsum</a>
-                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">2. Lorem ipsum</a>
-                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">3. Lorem ipsum</a>
-                    <a class="pl-3" th:href="@{/logout}">Abmelden</a>
-                </div>
-            </form>
-            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="loginModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title"> Anmelden</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form th:replace="fragments/login-form.html :: login-form">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal Register  -->
-            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalRegisterForm" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title"> Anmelden</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form th:fragment="register-form" method="post" action="/register">
-                                <div class="form-group">
-                                    <label for="firstName" class="sr-only">Vorname</label>
-                                    <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Vorname"
-                                           required="" autofocus="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName" class="sr-only">Nachname</label>
-                                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Nachname"
-                                           required/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email" class="sr-only">E-Mail</label>
-                                    <input type="text" id="email" name="email" class="form-control" placeholder="E-Mail"
-                                           required/>
-                                </div>
-                                <div>
-                                    <br><br><br>
-                                </div>
-                                <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
-                                <button class="btn btn-primary" type="submit" autofocus="">Registrieren</button>
-                                <span th:utext="${email}">E-Mail</span>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--  Ende Modal Register  -->
         </div>
+<!--            <form sec:authorize="isAuthenticated()" class="form-signin dropdown">-->
+<!--                <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button"-->
+<!--                   data-toggle="dropdown"-->
+<!--                   aria-haspopup="true" aria-expanded="false">Du bist eingeloggt</a>-->
+<!--                <div class="dropdown-menu pull-right" role="menu" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="pl-3"><b>Benutzer:</b></a><br>-->
+<!--                    <a class="pl-3" sec:authentication="name"></a>-->
+<!--                    <div class="dropdown-divider"></div>-->
+<!--                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">1. Lorem ipsum</a>-->
+<!--                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">2. Lorem ipsum</a>-->
+<!--                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">3. Lorem ipsum</a>-->
+<!--                    <a class="pl-3" th:href="@{/logout}">Abmelden</a>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="loginModal" tabindex="-1">-->
+<!--                <div class="modal-dialog">-->
+<!--                    <div class="modal-content">-->
+<!--                        <div class="modal-header">-->
+<!--                            <h4 class="modal-title"> Anmelden</h4>-->
+<!--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                <span aria-hidden="true">&times;</span>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                        <div class="modal-body">-->
+<!--                            <form th:replace="fragments/login-form.html :: login-form">-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Modal Register  &ndash;&gt;-->
+<!--            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalRegisterForm" tabindex="-1">-->
+<!--                <div class="modal-dialog">-->
+<!--                    <div class="modal-content">-->
+<!--                        <div class="modal-header">-->
+<!--                            <h4 class="modal-title"> Anmelden</h4>-->
+<!--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                <span aria-hidden="true">&times;</span>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                        <div class="modal-body">-->
+<!--                            <form th:fragment="register-form" method="post" action="/register">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="firstName" class="sr-only">Vorname</label>-->
+<!--                                    <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Vorname"-->
+<!--                                           required="" autofocus="">-->
+<!--                                </div>-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="lastName" class="sr-only">Nachname</label>-->
+<!--                                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Nachname"-->
+<!--                                           required/>-->
+<!--                                </div>-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="email" class="sr-only">E-Mail</label>-->
+<!--                                    <input type="text" id="email" name="email" class="form-control" placeholder="E-Mail"-->
+<!--                                           required/>-->
+<!--                                </div>-->
+<!--                                <div>-->
+<!--                                    <br><br><br>-->
+<!--                                </div>-->
+<!--                                <div class="modal-footer">-->
+<!--                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>-->
+<!--                                <button class="btn btn-primary" type="submit" autofocus="">Registrieren</button>-->
+<!--                                <span th:utext="${email}">E-Mail</span>-->
+<!--                                </div>-->
+
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;  Ende Modal Register  &ndash;&gt;-->
+<!--        </div>-->
         <!--  Ende Modal Login  -->
 
     </nav>
