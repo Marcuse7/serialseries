@@ -23,19 +23,19 @@ public class User implements UserDetails {
 
     private static final long serialVersionUID = 5859759120668175499L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-    	private Long id;
 
-	
-	@Column(columnDefinition="VARCHAR(50)", unique=true)
-	private String name;
-	
-	@Column(columnDefinition="VARCHAR(14)")
-	private String role;
+    @Column(columnDefinition = "VARCHAR(50)", unique = true)
+    private String name;
 
-	@ManyToMany(fetch=FetchType.EAGER, mappedBy="subscribers", cascade = CascadeType.ALL)
-	private Set<Series> subscriptions = new HashSet<>();
+    @Column(columnDefinition = "VARCHAR(14)")
+    private String role;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "subscribers", cascade = CascadeType.ALL)
+    private Set<Series> subscriptions = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -148,18 +148,18 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    
+
     public void subscribe(Series series) {
-    	if (subscriptions == null) {
-    		subscriptions = new HashSet<Series>(10);
-    		System.out.println("subscriptions were null");
-    	}
-    	subscriptions.add(series);
-    	
+        if (subscriptions == null) {
+            subscriptions = new HashSet<Series>(10);
+            System.out.println("subscriptions were null");
+        }
+        subscriptions.add(series);
+
     }
-    
+
     public void unsubscribe(Series series) {
-    	subscriptions.remove(series);
+        subscriptions.remove(series);
     }
 
 }
