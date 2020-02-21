@@ -1,16 +1,26 @@
 <!DOCTYPE html>
+<html lang="en">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
+    <meta charset="utf-8">
     <title>Insert title here</title>
+    <!--	Auto Loading Bootstrap Modal on Page Load    -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+
+    </script>
+    <!--	Ende Auto Loading Bootstrap Modal on Page Load    -->
 </head>
 <body>
 
-
 <header th:fragment="top">
 
-
     <!-- Bootstrap Hamburger -->
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="http://localhost:8080">SerialSeries</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -56,7 +66,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>&nbsp;&nbsp;
 
-        <!--        Begin Login/Logout Button-->
+        <!--  Modal Login  -->
         <div class="col-xs-12">
             <button sec:authorize="!isAuthenticated()" class="btn btn-primary btn-block" data-target="#loginModal" data-toggle="modal"
                     th:href="@{/login}">Anmelden
@@ -79,7 +89,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Anmelden</h4>
+                            <h4 class="modal-title"> Anmelden</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -91,11 +101,53 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal Register  -->
+            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalRegisterForm" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"> Anmelden</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:fragment="register-form" method="post" action="/register">
+                                <div class="form-group">
+                                    <label for="firstName" class="sr-only">Vorname</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Vorname"
+                                           required="" autofocus="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName" class="sr-only">Nachname</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Nachname"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">E-Mail</label>
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="E-Mail"
+                                           required/>
+                                </div>
+                                <div>
+                                    <br><br><br>
+                                </div>
+                                <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
+                                <button class="btn btn-primary" type="submit" autofocus="">Registrieren</button>
+                                <span th:utext="${email}">E-Mail</span>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  Ende Modal Register  -->
         </div>
-        <!--        Ende Login/Logout Button-->
+        <!--  Ende Modal Login  -->
 
     </nav>
-
     <!-- Ende Bootstrap-Navi -->
 
     <section class="jumbotron text-center">
@@ -104,5 +156,30 @@
         <p>The world's most popular series administration site</p>
     </section>
 </header>
+
+<!--Modal: modalOnLoad-->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Subscribe our Newsletter</h4>
+            </div>
+            <div class="modal-body">
+                <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal: modalOnLoad-->
 </body>
 </html>

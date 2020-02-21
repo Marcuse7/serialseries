@@ -5,8 +5,9 @@
     <title>Login</title>
 </head>
 <body>
+<div class="col-xs-12">
 <form th:fragment="login-form" method="post" action="/login">
-    <div class="form-group" >
+    <div class="form-group">
         <label for="username" class="sr-only">Benutzername</label>
         <input type="text" id="username" name="username" class="form-control" placeholder="E-Mail"
                required="" autofocus="">
@@ -18,16 +19,24 @@
     </div>
     <br>
 
-
-    <a th:href="@{/register}">Registrieren!</a>
-
-
-    <br><br>
-    <input type="checkbox" name="remember-me"> Erinnere dich an mich.<br><br>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" autofocus="" >Anmelden</button>
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
+    <!-- Trigger modal -->
+    <div>
+        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Registrieren!</a>
     </div>
+
+
+
+        <div>
+            <input type="checkbox" name="remember-me"> Erinnere dich an mich.<br><br>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
+            <button class="btn btn-primary" type="submit" autofocus="">Anmelden</button>
+        </div>
+
+
+
 </form>
+</div>
 </body>
 </html>
