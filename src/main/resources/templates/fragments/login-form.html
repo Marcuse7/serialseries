@@ -6,26 +6,26 @@
 </head>
 <body>
 <div class="col-xs-12">
-<form th:fragment="login-form" method="post" action="/login">
-    <div class="form-group">
-        <label for="username" class="sr-only">Benutzername</label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="E-Mail"
-               required="" autofocus="">
-    </div>
-    <div>
-        <label for="password" class="sr-only">Passwort</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Passwort"
-               required="">
-    </div>
-    <br>
+    <form th:fragment="login-form" method="post" action="/login">
+        <div class="form-group">
+            <label for="username" class="sr-only">Benutzername</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="E-Mail"
+                   required="" autofocus="">
+        </div>
+        <div>
+            <label for="password" class="sr-only">Passwort</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Passwort"
+                   required="">
+        </div>
+        <br>
 
-    <!-- Trigger modal -->
-    <div>
-        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Registrieren!</a>
-    </div>
+        <!-- Trigger modalRegisterForm -->
+        <div>
+            <a href="" class="btn btn-default mb-4" data-dismiss="modal" data-toggle="modal" data-target="#modalRegisterForm">Registrieren!</a>
+        </div>
+        <!-- Ende Trigger modalRegisterForm -->
 
-
-
+        <!-- Remember me und Buttons -->
         <div>
             <input type="checkbox" name="remember-me"> Erinnere dich an mich.<br><br>
         </div>
@@ -33,10 +33,8 @@
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
             <button class="btn btn-primary" type="submit" autofocus="">Anmelden</button>
         </div>
-
-
-
-</form>
+        <!-- Ende Remember me und Buttons -->
+    </form>
 </div>
 </body>
 </html>

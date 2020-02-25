@@ -91,8 +91,8 @@ public class RegisterController {
 
             emailService.sendEmail(registrationEmail);
 
-            modelAndView.addObject("confirmationMessage", "A confirmation e-mail has been sent to " + user.getEmail());
-            modelAndView.setViewName("register");
+            modelAndView.addObject("confirmationMessage", "Eine Bestätigungs-E-Mail wurde gesendet an " + user.getEmail());
+            modelAndView.setViewName("index");
         }
 
         return modelAndView;
@@ -118,7 +118,7 @@ public class RegisterController {
     @RequestMapping(value = "/confirm", method = RequestMethod.POST)
     public ModelAndView processConfirmationForm(ModelAndView modelAndView, BindingResult bindingResult, @RequestParam Map requestParams, RedirectAttributes redir) {
 
-        modelAndView.setViewName("redirect:/login");
+        modelAndView.setViewName("redirect:/");
 
         Zxcvbn passwordCheck = new Zxcvbn();
 

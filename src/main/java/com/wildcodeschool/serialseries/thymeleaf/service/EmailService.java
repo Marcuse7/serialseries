@@ -24,7 +24,7 @@ public class EmailService {
     @Async
     public void sendEmail(SimpleMailMessage email) {
         System.out.println(email.toString());
-        mailSender.send(email);
+//        mailSender.send(email);
     }
 
 }

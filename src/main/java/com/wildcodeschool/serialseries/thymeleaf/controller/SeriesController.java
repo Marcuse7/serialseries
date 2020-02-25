@@ -32,11 +32,19 @@ public class SeriesController {
 	@GetMapping("/series/all")
     public String showAllSeries(Model out) {
 		
-		
 		out.addAttribute ("series", seriesRepository.findAll());
 		
         return "series_all";
     }
+	
+	@GetMapping("/series/one")
+	public String showOneSeries(Model out, @RequestParam String seriesId) {
+		
+		out.addAttribute ("series", seriesRepository.findById(seriesId).get());  // Optional auspacken
+		
+		return "series_all";
+		
+	}
 	
 	@GetMapping("/series/table")
 	@Transactional
@@ -70,13 +78,13 @@ public class SeriesController {
 	@Transactional
 	public String addSubscriber(
 		Model out, 
-			@RequestParam String seriesID) {
+			@RequestParam String seriesId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User loggedOnUser = (User) authentication.getPrincipal();
 		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
 
-		Series series = findOne(seriesID);  // get Series object for the id from requestparam
+		Series series = findOne(seriesId);  // get Series object for the id from requestparam
 		
 		series.subscribe(user);
 		
@@ -87,13 +95,13 @@ public class SeriesController {
 	
 	@GetMapping("/series/unsubscribe")
 	@Transactional
-	public String removeSubscriber(@RequestParam String seriesID) {
+	public String removeSubscriber(@RequestParam String seriesId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User loggedOnUser = (User) authentication.getPrincipal();
 		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
 		
-		Series series = findOne(seriesID);  // get Series object for the id from requestparam
+		Series series = findOne(seriesId);  // get Series object for the id from requestparam
 		
 		series.unSubscribe(user);
 		

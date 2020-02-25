@@ -4,17 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Insert title here</title>
-    <!--	Auto Loading Bootstrap Modal on Page Load    -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-	$(document).ready(function(){
-		$("#myModal").modal('show');
-	});
 
-    </script>
-    <!--	Ende Auto Loading Bootstrap Modal on Page Load    -->
 </head>
 <body>
 
@@ -109,7 +99,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title"> Anmelden</h4>
+                            <h4 class="modal-title">Registrieren</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -157,31 +147,26 @@
         <!-- 	<img th:src="@{/images/test-logo-200x100.png}"  /> -->
         <p>The world's most popular series administration site</p>
     </section>
-</header>
+
 
 <!--Modal: modalOnLoad-->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Subscribe our Newsletter</h4>
+                <h4 class="modal-title">Glückwunsch</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-                <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email Address">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
+                <p th:text="${confirmationMessage}">Schön, dass Du uns wieder besuchst.</p>
             </div>
         </div>
     </div>
 </div>
 <!--Modal: modalOnLoad-->
+
+</header>
 </body>
 </html>
