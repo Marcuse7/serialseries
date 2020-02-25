@@ -2,61 +2,64 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/external-resources.html :: headFragment">
-	
-    <title id="pageTitle">Serial Series | All Series</title>
-    
+
+	<title id="pageTitle">Serial Series | All Series</title>
+
 </head>
 
 <body>
 
-	<script th:src="@{/js/series.js}"></script>
-	
-	<header th:replace="fragments/header.html :: top">
-	</header>
+	<!-- 	<script th:src="@{/js/series.js}"></script> -->
+
+	<header th:replace="fragments/header.html :: top"> </header>
 
 	<div class="table-responsive-sm">
 
-	<table class="table  table-hover table-striped">
+		<table class="table  table-hover table-striped">
 
-    <thead>
-    <tr>
-        <th scope="col" class="w-25 p-3">Serie</th>
-        <th scope="col" class="w-25 p-3">Beschreibung</th>
-        <th scope="col" class="w-25 p-3">&nbsp;</th>
-        <th scope="col" class="w-25 p-3">Deine Listen</th>
-    </tr>
-    </thead>
-    <tbody>
+			<thead>
+				<tr>
+					<th scope="col" class="w-25 p-3">Serie</th>
+					<th scope="col" class="w-25 p-3">Beschreibung</th>
+					<th scope="col" class="w-25 p-3">&nbsp;</th>
+					<th scope="col" class="w-25 p-3">Deine Listen</th>
+				</tr>
+			</thead>
+			<tbody>
 
-    <tr th:each="series : ${series}">
+				<tr th:each="series : ${series}">
 
-        <td th:text="${series.name}" scope="row"></td>
+					<td scope="row"><a
+						th:href="@{/series/one(seriesId=${series.id})}"
+					><span th:text="${series.name}"></span></a></td>
 
-        <td th:text="${series.description}">Description</td>
+					<td th:text="${series.description}">Description</td>
 
-        <td><img th:src="${series.picture}" class="img-fluid rounded" alt="${series.name}"></td>
+					<td><img th:src="${series.picture}" class="img-fluid rounded"
+						alt="${series.name}"
+					></td>
 
-		<td><input type="checkbox" data-onstyle="success" data-offstyle="default" 
-		th:data-seriesid="${series.id}" 
-		th:onchange="subscription(this)" data-size="md" data-toggle="toggle" 
-		data-on="✔ Abo" data-off="✘ Kein Abo" 
-		th:checked="${subscriptions.contains(series)}"></td>
+					<td><input type="checkbox" data-onstyle="success"
+						data-offstyle="default" th:data-seriesid="${series.id}"
+						th:onchange="subscription(this)" data-size="md"
+						data-toggle="toggle" data-on="✔ Abo" data-off="✘ Kein Abo"
+						th:checked="${subscriptions.contains(series)}"
+					></td>
 
-    </tr>
-    </tbody>
-    
-</table>
-</div>
- 
- 
+				</tr>
+			</tbody>
 
-
- 
-
-
+		</table>
+	</div>
 
 
-	<footer th:replace="fragments/footer.html :: footer">
-	</footer>
+
+
+
+
+
+
+
+	<footer th:replace="fragments/footer.html :: footer"> </footer>
 </body>
 </html>
