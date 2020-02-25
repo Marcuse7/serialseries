@@ -27,8 +27,25 @@
 <body>
 	<header th:replace="fragments/header.html :: top">
 		</header>
+		
+<div class="row">
+<div class="col-md-4">
  <img src="../../images/man-holding-remote-control-10401601.jpg" 
      th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
+     </div>
+<div class="col-md-4"> 
+  <img src="../../images/television-remote-control-525705_1920_600x400.jpg" 
+     th:attr="src=@{/images/television-remote-control-525705_1920_600x400.jpg},title=#{logo},alt=#{logo}" />
+ 		</div>
+ <div class="col-md-4">
+  <img src="../../images/room-2559790_1920_600x400.jpg" 
+     th:attr="src=@{/images/room-2559790_1920_600x400.jpg},title=#{logo},alt=#{logo}" />
+     	</div>
+</div>
+
+
+
+
 <h1>Program title by Station</h1>   
 <table>
     <thead>
