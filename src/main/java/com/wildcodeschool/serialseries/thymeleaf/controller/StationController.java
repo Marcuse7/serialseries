@@ -22,11 +22,13 @@ public class StationController {
     						@RequestParam(defaultValue = "0") int page) {
 
         model.addAttribute("stations", stationRepo.findAll(PageRequest.of(page, 6)));
-        //model.addAttribute("series_name", seriesRepo.findAll());
+
         model.addAttribute("currentPage", page);
         return "stations";
      	
     }
+   
+    
         @GetMapping("/findOne")
         @ResponseBody
         public Station findOne(Integer id) {
