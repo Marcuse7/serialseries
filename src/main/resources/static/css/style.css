@@ -29,3 +29,19 @@ li {
   padding-left: 1px;
   padding-right: 1px;
 }
+
+
+.series_all_card {
+	width:50%;
+	margin: 0 auto 10px auto;
+}
+
+@media screen and (max-width: 800px) {
+  .series_all_card {
+    width: 70%;
+  }
+
+@media screen and (max-width: 500px) {
+	  .series_all_card {
+	    width: 90%;
+	  }
