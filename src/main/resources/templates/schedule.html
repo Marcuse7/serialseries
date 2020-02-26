@@ -27,6 +27,20 @@
 <body>
 	<header th:replace="fragments/header.html :: top">
 		</header>
+		
+<form action="/stations/schedule" method="post">
+    <input name="idStation" th:value="${station.id}" type="hidden">
+     <img style="display:inline;" th:src="@{${station.picture}}"/> 
+     
+<!--     <label for="schedule">StationName:</label> -->
+<!--     <select id="schedule" name="id"> -->
+<!--         <option th:each="schedule : ${allschedules}" th:text="${station.name}" -->
+<!--                 th:value="${station.id}">StationName -->
+<!--         </option>  -->
+<!--     </select> -->
+<!--     <input type="submit" value="Send"> -->
+</form>
+		
 
 <div class="row">
 <div class="col-md-4">
@@ -43,7 +57,8 @@
      	</div>
 </div>
 
-<h1>Program title by Station</h1>   
+<h1>Program title by Station</h1> 
+  <h1 th:text="${station.name}"></h1>
 <table>
     <thead>
     <tr>
