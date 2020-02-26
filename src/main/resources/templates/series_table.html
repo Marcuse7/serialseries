@@ -3,7 +3,7 @@
 
 <head th:replace="fragments/external-resources.html :: headFragment">
 
-	<title id="pageTitle">Serial Series | All Series</title>
+	<title id="pageTitle">Serial Series | Alle Serien</title>
 
 </head>
 
@@ -33,7 +33,7 @@
 						th:href="@{/series/one(seriesId=${series.id})}"
 					><span th:text="${series.name}"></span></a></td>
 
-					<td th:text="${series.description}">Description</td>
+					<td th:text="${series.description}">Beschreibung</td>
 
 					<td><img th:src="${series.picture}" class="img-fluid rounded"
 						alt="${series.name}"
