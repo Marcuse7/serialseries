@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/external-resources.html :: headFragment">
-<title id="pageTitle">Serial Series | Station List</title>
+<title id="pageTitle">Serial Series | Senderliste</title>
 </head>
 <body>
 <header th:replace="fragments/header.html :: top">
@@ -9,7 +9,7 @@
 <!--  <img src="../../images/man-holding-remote-control-10401601.jpg" -->
 <!--      th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" /> -->
 
-<h1>Übersicht der TV Sender</h1>
+<h1>Übersicht der TV-Sender</h1>
 <div class="row">
 <div class="col-md-4"></div>
  <form action="#" th:action="@{'/search'}" class="form-inline my-2 my-lg-0">
@@ -30,7 +30,7 @@
 		<br>
 		<br>
 		<br>
-<a href="/stations">Zurück zur Übersicht der TV Sender</a>
+<a href="/stations">Zurück zur Übersicht der TV-Sender</a>
 <footer th:replace="fragments/footer.html :: footer">
 	</footer>
 </body>
