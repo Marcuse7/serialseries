@@ -17,6 +17,10 @@ public interface SeriesRepository extends JpaRepository <Series, String> {
 	
 	List <Series> findByNameOrDescriptionContaining (String name, String description);
 
+	
+	List <Series> findFirst30ByNameOrDescriptionContaining (String name, String description);
+
+
 
 	
 }

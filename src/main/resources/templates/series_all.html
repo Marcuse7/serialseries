@@ -7,13 +7,15 @@
 
 	<header th:replace="fragments/header.html :: top"> </header>
 
+
+<!-- 	<script th:src="@{/js/series.js}"></script> -->
 	<!--  Card   -->
 
 	<div th:each="serie : ${series}">
 
 
-		<div class="card" style="width: 70%; margin: 0 auto 10px auto;">
-			<!--    <a th:href="@{subscribe(seriesId=${series.id})}"> -->
+		<div class="card series_all_card">
+	<!-- 	  <a th:href="@{subscribe(seriesID=${series.id})}"> -->
 			<img class="card-img-top" th:src="${serie.picture}"
 				th:alt="${serie.name}" th:title="${serie.name}"
 			>
