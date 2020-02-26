@@ -34,7 +34,12 @@ public class SeriesController {
 		
 //		out.addAttribute ("series", seriesRepository.findOrderedByNameLimitedTo(20));
 		
-		out.addAttribute ("series", seriesRepository.findFirst30ByNameContaining("und"));
+
+		String name="";
+		String description=" ";
+
+	 	out.addAttribute ("series", seriesRepository.findFirst30ByNameOrDescriptionContaining(name,description));
+		
 //		out.addAttribute ("series", seriesRepository.findAll());
 		
         return "series_all";
