@@ -18,6 +18,10 @@ public interface SeriesRepository extends PagingAndSortingRepository <Series, St
 	
 	List <Series> findByNameOrDescriptionContaining (String name, String description);
 
+	
+	List <Series> findFirst30ByNameOrDescriptionContaining (String name, String description);
+
+
 
 	
 }
