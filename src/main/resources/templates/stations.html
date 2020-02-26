@@ -13,7 +13,12 @@
      th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
 
 <h1>Station</h1>
-
+ <form action="#" th:action="@{'stations/search'}" class="form-inline my-2 my-lg-0">
+                        <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search stations"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+   </form>
+   
    <div class="container-fluid">
    <div class="row">
     <div class="col-sm-4" th:each="station : ${stations}">
@@ -23,7 +28,7 @@
 			</div>
 		</div>
 		</div>
-		
+<a href="/stations">Return to station's list</a>
 		
    
     

@@ -8,6 +8,8 @@ import com.wildcodeschool.serialseries.thymeleaf.entity.Station;
 	
 	@Repository
 	public interface StationRepository extends JpaRepository<Station, Integer> {
+
+		Station getByNameContaining(String name);
 		}
 
 

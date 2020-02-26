@@ -1,5 +1,7 @@
 package com.wildcodeschool.serialseries.thymeleaf.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,23 @@ public class StationController {
         @GetMapping("/findOne")
         @ResponseBody
         public Station findOne(Integer id) {
-            return stationRepo.findById(id).get();
-       }
+            return stationRepo.findById(id).get(); 
+        	}
+        
+        @GetMapping("stations/search")
+        public String search(Model model, @RequestParam String name) {
+      		model.addAttribute("stations", stationRepo
+      				.getByNameContaining(name));
+      		return "/stations";
+      	}
+        
+//        @GetMapping("/stations")
+//        public String countryName(Expense expense,Model model){
+//            model.addAttribute("c",categoryRepo.findAll());
+//            return "stations";
+//        }
+        
+
+        
+        
 }
