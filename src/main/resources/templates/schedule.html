@@ -42,6 +42,31 @@
 </form>
 		
 
+
+<h1>Programm der Station - <span th:text="${station.name}"></span></h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Sendezeit</th>
+		<th>Programmtitel</th>
+		<th>Beschreibung</th>  
+    </tr>
+    </thead>
+    <tbody>
+   
+    <tr th:each="schedule : ${allSchedules}">
+        <td th:text="${#temporals.format(schedule.airDateTime,'dd.MM.yyyy hh:mm')}">Sendezeit</td>
+        <td th:text="${schedule.episode.name}">Programmtitel</td>
+        <td th:text="${schedule.episode.description}">Beschreibung</td>  
+      </tr>
+    </tbody>
+</table>
+<br>
+<a href="/stations">Zurück zur Übersicht der TV Sender</a>
+<br>
+<br>
+<br>
 <div class="row">
 <div class="col-md-4">
  <img src="../../images/man-holding-remote-control-10401601.jpg" 
@@ -57,26 +82,7 @@
      	</div>
 </div>
 
-<h1>Program title by Station</h1> 
-  <h1 th:text="${station.name}"></h1>
-<table>
-    <thead>
-    <tr>
-        <th>broadcasting time</th>
-		<th>Program Title</th>
-		<th>description</th>  
-    </tr>
-    </thead>
-    <tbody>
-   
-    <tr th:each="schedule : ${allSchedules}">
-        <td th:text="${#temporals.format(schedule.airDateTime,'dd.MM.yyyy hh:mm')}">Broadcasting time</td>
-        <td th:text="${schedule.episode.name}">Program Title</td>
-        <td th:text="${schedule.episode.description}">description</td>  
-      </tr>
-    </tbody>
-</table>
-<a href="/stations">Return to station's list</a>
+
 <footer th:replace="fragments/footer.html :: footer">
 	</footer>
 </body>
