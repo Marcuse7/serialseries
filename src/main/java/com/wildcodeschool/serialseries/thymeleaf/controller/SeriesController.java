@@ -32,7 +32,10 @@ public class SeriesController {
 	@GetMapping("/series/all")
     public String showAllSeries(Model out) {
 		
-		out.addAttribute ("series", seriesRepository.findAll());
+//		out.addAttribute ("series", seriesRepository.findOrderedByNameLimitedTo(20));
+		
+		out.addAttribute ("series", seriesRepository.findFirst30ByNameContaining("und"));
+//		out.addAttribute ("series", seriesRepository.findAll());
 		
         return "series_all";
     }

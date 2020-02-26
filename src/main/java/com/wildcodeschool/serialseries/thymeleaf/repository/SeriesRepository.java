@@ -16,6 +16,10 @@ public interface SeriesRepository extends JpaRepository <Series, String> {
 	Optional<Series> findById(String seriesId);
 	
 	List <Series> findByNameOrDescriptionContaining (String name, String description);
+	
+//doesn't work	 List <Series> findOrderedByNameLimitedTo (int limit);
+	
+	List <Series> findFirst30ByNameContaining (String feature);
 
 
 	
