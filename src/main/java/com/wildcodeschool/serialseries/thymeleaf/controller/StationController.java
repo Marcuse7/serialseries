@@ -23,10 +23,13 @@ public class StationController {
 
         model.addAttribute("stations", stationRepo.findAll());
         //model.addAttribute("series_name", seriesRepo.findAll());
+
         model.addAttribute("currentPage", page);
         return "stations";
      	
     }
+   
+    
         @GetMapping("/findOne")
         @ResponseBody
         public Station findOne(Integer id) {
