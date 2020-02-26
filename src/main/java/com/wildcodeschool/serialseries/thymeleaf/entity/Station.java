@@ -25,7 +25,7 @@ public class Station {
 	@Column(columnDefinition="VARCHAR(255)")
 	private String picture;
 	
-	@OneToMany(mappedBy="station", fetch=FetchType.EAGER) 
+	@OneToMany(mappedBy="station", fetch=FetchType.LAZY) 
 	private List<Schedule> schedules;
 
 
