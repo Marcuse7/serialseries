@@ -21,7 +21,8 @@ public class StationController {
     public String getAll(Model model,
     						@RequestParam(defaultValue = "0") int page) {
 
-        model.addAttribute("stations", stationRepo.findAll(PageRequest.of(page, 6)));
+        model.addAttribute("stations", stationRepo.findAll());
+        //model.addAttribute("series_name", seriesRepo.findAll());
 
         model.addAttribute("currentPage", page);
         return "stations";
