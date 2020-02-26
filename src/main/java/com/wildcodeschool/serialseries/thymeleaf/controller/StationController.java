@@ -37,11 +37,9 @@ public class StationController {
         
         @GetMapping("/search")
         public String search(Model model, @RequestParam String name) {
-      		model.addAttribute("stations", stationRepo
-      				.getByNameContaining(name));
+      		model.addAttribute("stations", stationRepo.findByNameContaining(name));
       		return "/stations";
-      		//      		return "redirect:/stations/search";
-//      		return "/stations";
+
       	}
         
 //        @GetMapping("/stations")
