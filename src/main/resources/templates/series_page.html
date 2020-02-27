@@ -3,13 +3,11 @@
 
 <head th:replace="fragments/external-resources.html :: headFragment">
 
-	<title id="pageTitle">Serial Series | Alle Serien</title>
+<title id="pageTitle">Serial Series | All Series</title>
 
 </head>
 
 <body>
-
-	<!-- 	<script th:src="@{/js/series.js}"></script> -->
 
 	<header th:replace="fragments/header.html :: top"> </header>
 
@@ -27,13 +25,13 @@
 			</thead>
 			<tbody>
 
-				<tr th:each="series : ${series}">
+				<tr th:each="series : ${page.content}">
 
 					<td scope="row"><a
 						th:href="@{/series/one(seriesId=${series.id})}"
 					><span th:text="${series.name}"></span></a></td>
 
-					<td th:text="${series.description}">Beschreibung</td>
+					<td th:text="${series.description}">Description</td>
 
 					<td><img th:src="${series.picture}" class="img-fluid rounded"
 						alt="${series.name}"
@@ -45,11 +43,30 @@
 						data-toggle="toggle" data-on="✔ Abo" data-off="✘ Kein Abo"
 						th:checked="${subscriptions.contains(series)}"
 					></td>
-
+<!-- 						th:checked="${subscriptions.contains(series)}" -->
 				</tr>
 			</tbody>
 
 		</table>
+
+		<div class="pagination-div">
+			<span th:if="${page.hasPrevious()}"> <a
+				th:href="@{/series/page(page=${page.number-1},size=${page.size})}"
+			>Previous</a>
+			</span>
+			<th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+				<span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+				<span th:unless="${page.number == i}"> <a
+					th:href="@{/series/page(page=${i},size=${page.size})}"
+				>[[${i}+1]]</a>
+				</span>
+			</th:block>
+			<span th:if="${page.hasNext()}"> <a
+				th:href="@{/series/page(page=${page.number+1},size=${page.size})}"
+			>Next</a>
+			</span>
+		</div>
+		
 	</div>
 
 

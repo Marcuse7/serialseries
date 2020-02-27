@@ -10,6 +10,9 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SeriesController {
 	
+	private void userSubscriptions(Model out) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User loggedOnUser = (User) authentication.getPrincipal();
+		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
+		entityManager.refresh(user);
+		Set<Series> subscriptions = user.getSubscriptions();
+		out.addAttribute("subscriptions", subscriptions);
+		
+		out.addAttribute("user", user);
+	}
+	
 	@Autowired
     private SeriesRepository seriesRepository;
 
@@ -30,6 +44,7 @@ public class SeriesController {
 	private EntityManager entityManager;
 	
 	@GetMapping("/series/all")
+	@Transactional
     public String showAllSeries(Model out) {
 		
 //		out.addAttribute ("series", seriesRepository.findOrderedByNameLimitedTo(20));
@@ -37,18 +52,37 @@ public class SeriesController {
 
 		String name="";
 		String description=" ";
+	
 
 	 	out.addAttribute ("series", seriesRepository.findFirst30ByNameOrDescriptionContaining(name,description));
 		
 //		out.addAttribute ("series", seriesRepository.findAll());
+	 	
+		userSubscriptions(out);
 		
         return "series_all";
     }
 	
+	@GetMapping("/series/page")
+	@Transactional
+	public String showAllSeriesPaged(@PageableDefault(size = 10) Pageable pageable, Model out) {
+		
+		Page<Series> page = seriesRepository.findAll(pageable);
+		
+		out.addAttribute ("page", page);
+		
+		userSubscriptions(out);
+
+		
+        return "series_page";
+    }
+	
 	@GetMapping("/series/one")
+	@Transactional
 	public String showOneSeries(Model out, @RequestParam String seriesId) {
 		
 		out.addAttribute ("series", seriesRepository.findById(seriesId).get());  // Optional auspacken
+		userSubscriptions(out);
 		
 		return "series_all";
 		
@@ -57,25 +91,21 @@ public class SeriesController {
 	@GetMapping("/series/table")
 	@Transactional
     public String showAllSeriesTable(Model out) {
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User loggedOnUser = (User) authentication.getPrincipal();
-		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
-		
+
 		out.addAttribute ("series", seriesRepository.findAll());
-		entityManager.refresh(user);
-		Set<Series> subscriptions = user.getSubscriptions();
-		out.addAttribute("subscriptions", subscriptions);
 		
-		out.addAttribute("user", user);
+		userSubscriptions(out);
 		
         return "series_table";
     }
+
+	
 	
 	@PostMapping("/series/search")
+	@Transactional
     public String showSeriesByFilter(Model out, @RequestParam String suchbegriff) {
 		
-		
+		userSubscriptions(out);
 		out.addAttribute ("series", seriesRepository.findByNameOrDescriptionContaining(suchbegriff, suchbegriff));
 		
         return "series_all";

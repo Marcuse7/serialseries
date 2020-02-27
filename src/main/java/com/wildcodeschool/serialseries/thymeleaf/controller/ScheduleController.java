@@ -46,16 +46,5 @@ public class ScheduleController {
         Example<Schedule> example = Example.of(schedule);
         modul.addAttribute("allSchedules", scheduleRepository.findAll(example));
         return "schedule";
-    }
-
-//    	public Method getMethod(Object obj, String methodName, Class[] args) {
-//        Method method;
-//        try {
-//            method = obj.getClass().getDeclaredMethod(methodName, args);
-//            return method;
-//        	} catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        	}
-//        return null;
-//    }	    
+    }   
 }

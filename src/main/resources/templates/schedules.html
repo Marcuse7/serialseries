@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/external-resources.html :: headFragment">
-<title id="pageTitle">Serial Series | Home</title>
+<title id="pageTitle">Serial Series | Programm</title>
 <meta charset="utf-8">
 </head>
 <style>
@@ -32,10 +32,10 @@
     <input name="idStation" th:value="${station.id}" type="hidden">
      <img style="display:inline;" th:src="@{${station.picture}}"/> 
      <h1 th:text="${station.name}"></h1>
-    <label for="schedule">StationName:</label>
+    <label for="schedule">Sender:</label>
     <select id="schedule" name="id">
         <option th:each="schedule : ${allschedules}" th:text="${station.name}"
-                th:value="${station.id}">StationName
+                th:value="${station.id}">Sender
         </option> 
     </select>
     <input type="submit" value="Send">
