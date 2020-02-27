@@ -1,10 +1,13 @@
 package com.wildcodeschool.serialseries.thymeleaf.controller;
 
 
+import com.wildcodeschool.serialseries.thymeleaf.repository.EpisodeRepository;
 import com.wildcodeschool.serialseries.thymeleaf.repository.SeriesRepository;
 import com.wildcodeschool.serialseries.thymeleaf.entity.User;
+import com.wildcodeschool.serialseries.thymeleaf.entity.Episode;
 import com.wildcodeschool.serialseries.thymeleaf.entity.Series;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -28,7 +31,10 @@ public class SeriesController {
 	
 	@Autowired
     private SeriesRepository seriesRepository;
-
+	
+	@Autowired
+	private EpisodeRepository episodeRepository;
+	
 	@Autowired
 	private EntityManager entityManager;
 	
@@ -70,9 +76,23 @@ public class SeriesController {
     }
 	
 	@GetMapping("/series/one")
+	@Transactional
 	public String showOneSeries(Model out, @RequestParam String seriesId) {
 		
-		out.addAttribute ("series", seriesRepository.findById(seriesId).get());  // Optional auspacken
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User loggedOnUser = (User) authentication.getPrincipal();
+		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
+		entityManager.refresh(user);
+		out.addAttribute("user", user);
+		
+		Set<Series> subscriptions = user.getSubscriptions();
+		out.addAttribute("subscriptions", subscriptions);
+		
+		Series series = seriesRepository.findById(seriesId).get();
+		out.addAttribute ("series", series);  // Optional unwrap
+		
+		List<Episode> episodes = episodeRepository.findBySeriesIs(series);
+		out.addAttribute("episodes", episodes);
 		
 		return "series_all";
 		
@@ -88,10 +108,12 @@ public class SeriesController {
 		User loggedOnUser = (User) authentication.getPrincipal();
 		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
 		entityManager.refresh(user);
+		out.addAttribute("user", user);
+		
 		Set<Series> subscriptions = user.getSubscriptions();
 		out.addAttribute("subscriptions", subscriptions);
 		
-		out.addAttribute("user", user);
+		out.addAttribute ("series", seriesRepository.findAll());
 		
         return "series_table";
     }
@@ -121,6 +143,8 @@ public class SeriesController {
 		series.subscribe(user);
 		
 		out.addAttribute ("series", series);
+		
+		
 
 		return "series_all";
 	}
