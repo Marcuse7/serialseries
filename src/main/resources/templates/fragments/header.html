@@ -24,16 +24,27 @@
                     <a class="nav-link" href="http://localhost:8080">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/series/table">Alle Serien</a>
+                    <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link">Alle Serien</a>
+                    <a sec:authorize="isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link" href="http://localhost:8080/series/table">Alle Serien</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/series/page">Alle Serien (paginiert)</a>
+                    <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link">Alle Serien (paginiert)</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/series/page">Alle Serien (paginiert)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/series/all">Tipps der Redaktion</a>
+                    <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link">Tipps der Redaktion</a>
+                    <a sec:authorize="isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link" href="http://localhost:8080/series/all">Tipps der Redaktion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/stations">Alle Sender</a>
+                    <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link">Alle Sender</a>
+                    <a sec:authorize="isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link" href="http://localhost:8080/stations">Alle Sender</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -148,7 +159,7 @@
     <section class="jumbotron text-center">
         <h1>Serial Series</h1>
         <!-- 	<img th:src="@{/images/test-logo-200x100.png}"  /> -->
-        <<!-- p>The world's most popular series administration site</p> -->
+        <!-- p>The world's most popular series administration site</p> -->
     </section>
 
 
