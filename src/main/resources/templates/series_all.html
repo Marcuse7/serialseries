@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/external-resources.html :: headFragment">
-<title id="pageTitle">Serial Series | All Series</title>
+<title id="pageTitle">Serial Series | Ausgewählte Serien</title>
 </head>
 <body>
 
 	<header th:replace="fragments/header.html :: top"> </header>
 
 
-	<!-- 	<script th:src="@{/js/series.js}"></script> -->
 	<!--  Card   -->
 
 	<div th:each="series : ${series}">
 
 
 		<div class="card series_all_card">
-			<!-- 	  <a th:href="@{subscribe(seriesID=${series.id})}"> -->
+
 			<img class="card-img-top" th:src="${series.picture}"
 				th:alt="${series.name}" th:title="${series.name}"
 			>
@@ -25,9 +24,10 @@
 				<p class="card-text" th:text="${series.description}"
 					style="text-overflow: ellipsis; overflow: hidden; max-height: 7.5em;"
 				>Beschreibung</p>
-				<!--             </a> -->
+
 			</div>
 			<div class="card-footer">
+
 				<input type="checkbox" data-onstyle="success"
 					data-offstyle="default" th:data-seriesid="${series.id}"
 					th:onchange="subscription(this)" data-size="md"

@@ -13,6 +13,9 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -51,6 +54,27 @@ public class SeriesController {
         return "series_all";
     }
 	
+	@GetMapping("/series/page")
+	@Transactional
+	public String showAllSeriesPaged(@PageableDefault(size = 10) Pageable pageable, Model out) {
+		
+		Page<Series> page = seriesRepository.findAll(pageable);
+		
+		out.addAttribute ("page", page);
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User loggedOnUser = (User) authentication.getPrincipal();
+		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
+		entityManager.refresh(user);
+		Set<Series> subscriptions = user.getSubscriptions();
+		out.addAttribute("subscriptions", subscriptions);
+		
+		out.addAttribute("user", user);
+
+		
+        return "series_page";
+    }
+	
 	@GetMapping("/series/one")
 	@Transactional
 	public String showOneSeries(Model out, @RequestParam String seriesId) {
@@ -77,6 +101,8 @@ public class SeriesController {
 	@GetMapping("/series/table")
 	@Transactional
     public String showAllSeriesTable(Model out) {
+
+		out.addAttribute ("series", seriesRepository.findAll());
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User loggedOnUser = (User) authentication.getPrincipal();
