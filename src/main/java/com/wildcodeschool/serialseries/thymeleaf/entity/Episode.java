@@ -2,6 +2,7 @@ package com.wildcodeschool.serialseries.thymeleaf.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -49,7 +50,7 @@ public class Episode {
 	@JoinColumn(name="series_id")
 	private Series series;
 	
-	@OneToMany(mappedBy="episode")
+	@OneToMany(mappedBy="episode", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Schedule> schedules;
 
 	public Episode(String id, Integer number, Integer season, String description, String picture, Float rating) {
@@ -152,6 +153,42 @@ public class Episode {
 
 	public void setSchedules(List<Schedule> schedules) {
 		this.schedules = schedules;
+	}
+
+	public String getEpisodeTitle() {
+		return episodeTitle;
+	}
+
+	public void setEpisodeTitle(String episodeTitle) {
+		this.episodeTitle = episodeTitle;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public Boolean getIs_series() {
+		return is_series;
+	}
+
+	public void setIs_series(Boolean is_series) {
+		this.is_series = is_series;
+	}
+
+	public Series getSeries() {
+		return series;
+	}
+
+	public void setSeries(Series series) {
+		this.series = series;
+	}
+
+	public Boolean getWanted() {
+		return wanted;
 	}
 
 }
