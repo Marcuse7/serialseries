@@ -1,13 +1,10 @@
 package com.wildcodeschool.serialseries.thymeleaf.controller;
 
 
-import com.wildcodeschool.serialseries.thymeleaf.repository.EpisodeRepository;
 import com.wildcodeschool.serialseries.thymeleaf.repository.SeriesRepository;
 import com.wildcodeschool.serialseries.thymeleaf.entity.User;
-import com.wildcodeschool.serialseries.thymeleaf.entity.Episode;
 import com.wildcodeschool.serialseries.thymeleaf.entity.Series;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -29,16 +26,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SeriesController {
 	
+	private void userSubscriptions(Model out) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User loggedOnUser = (User) authentication.getPrincipal();
+		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
+		entityManager.refresh(user);
+		Set<Series> subscriptions = user.getSubscriptions();
+		out.addAttribute("subscriptions", subscriptions);
+		
+		out.addAttribute("user", user);
+	}
+	
 	@Autowired
     private SeriesRepository seriesRepository;
-	
-	@Autowired
-	private EpisodeRepository episodeRepository;
-	
+
 	@Autowired
 	private EntityManager entityManager;
 	
 	@GetMapping("/series/all")
+	@Transactional
     public String showAllSeries(Model out) {
 		
 //		out.addAttribute ("series", seriesRepository.findOrderedByNameLimitedTo(20));
@@ -46,10 +52,13 @@ public class SeriesController {
 
 		String name="";
 		String description=" ";
+	
 
 	 	out.addAttribute ("series", seriesRepository.findFirst30ByNameOrDescriptionContaining(name,description));
 		
 //		out.addAttribute ("series", seriesRepository.findAll());
+	 	
+		userSubscriptions(out);
 		
         return "series_all";
     }
@@ -62,14 +71,7 @@ public class SeriesController {
 		
 		out.addAttribute ("page", page);
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User loggedOnUser = (User) authentication.getPrincipal();
-		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
-		entityManager.refresh(user);
-		Set<Series> subscriptions = user.getSubscriptions();
-		out.addAttribute("subscriptions", subscriptions);
-		
-		out.addAttribute("user", user);
+		userSubscriptions(out);
 
 		
         return "series_page";
@@ -79,20 +81,8 @@ public class SeriesController {
 	@Transactional
 	public String showOneSeries(Model out, @RequestParam String seriesId) {
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User loggedOnUser = (User) authentication.getPrincipal();
-		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
-		entityManager.refresh(user);
-		out.addAttribute("user", user);
-		
-		Set<Series> subscriptions = user.getSubscriptions();
-		out.addAttribute("subscriptions", subscriptions);
-		
-		Series series = seriesRepository.findById(seriesId).get();
-		out.addAttribute ("series", series);  // Optional unwrap
-		
-		List<Episode> episodes = episodeRepository.findBySeriesIs(series);
-		out.addAttribute("episodes", episodes);
+		out.addAttribute ("series", seriesRepository.findById(seriesId).get());  // Optional auspacken
+		userSubscriptions(out);
 		
 		return "series_all";
 		
@@ -104,24 +94,18 @@ public class SeriesController {
 
 		out.addAttribute ("series", seriesRepository.findAll());
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User loggedOnUser = (User) authentication.getPrincipal();
-		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
-		entityManager.refresh(user);
-		out.addAttribute("user", user);
-		
-		Set<Series> subscriptions = user.getSubscriptions();
-		out.addAttribute("subscriptions", subscriptions);
-		
-		out.addAttribute ("series", seriesRepository.findAll());
+		userSubscriptions(out);
 		
         return "series_table";
     }
+
+	
 	
 	@PostMapping("/series/search")
+	@Transactional
     public String showSeriesByFilter(Model out, @RequestParam String suchbegriff) {
 		
-		
+		userSubscriptions(out);
 		out.addAttribute ("series", seriesRepository.findByNameOrDescriptionContaining(suchbegriff, suchbegriff));
 		
         return "series_all";
@@ -143,8 +127,6 @@ public class SeriesController {
 		series.subscribe(user);
 		
 		out.addAttribute ("series", series);
-		
-		
 
 		return "series_all";
 	}
