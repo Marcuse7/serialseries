@@ -45,7 +45,7 @@ public class Episode {
 	@Column(nullable=true)
 	private Boolean wanted;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="series_id")
 	private Series series;
 	
