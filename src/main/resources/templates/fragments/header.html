@@ -26,8 +26,7 @@
                 <li class="nav-item">
                     <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
                        th:href="@{/login}" class="nav-link">Alle Serien</a>
-                    <a sec:authorize="isAuthenticated()" data-target="#loginModal" data-toggle="modal"
-                       th:href="@{/login}" class="nav-link" href="http://localhost:8080/series/table">Alle Serien</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/series/table">Alle Serien</a>
                 </li>
                 <li class="nav-item">
                     <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
@@ -37,14 +36,12 @@
                 <li class="nav-item">
                     <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
                        th:href="@{/login}" class="nav-link">Tipps der Redaktion</a>
-                    <a sec:authorize="isAuthenticated()" data-target="#loginModal" data-toggle="modal"
-                       th:href="@{/login}" class="nav-link" href="http://localhost:8080/series/all">Tipps der Redaktion</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/series/all">Tipps der Redaktion</a>
                 </li>
                 <li class="nav-item">
                     <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
                        th:href="@{/login}" class="nav-link">Alle Sender</a>
-                    <a sec:authorize="isAuthenticated()" data-target="#loginModal" data-toggle="modal"
-                       th:href="@{/login}" class="nav-link" href="http://localhost:8080/stations">Alle Sender</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/stations">Alle Sender</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
