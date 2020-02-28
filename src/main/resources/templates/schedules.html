@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/external-resources.html :: headFragment">
+<title id="pageTitle">Serial Series | Programm</title>
+<meta charset="utf-8">
+</head>
+<style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #4AAF55;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2d1;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 5px;
+            text-align: left;
+        }
+    </style>
+<body>
+	<header th:replace="fragments/header.html :: top">
+		</header>
+
+<form action="/stations/schedule" method="post">
+    <input name="idStation" th:value="${station.id}" type="hidden">
+     <img style="display:inline;" th:src="@{${station.picture}}"/> 
+     <h1 th:text="${station.name}"></h1>
+    <label for="schedule">Sender:</label>
+    <select id="schedule" name="id">
+        <option th:each="schedule : ${allschedules}" th:text="${station.name}"
+                th:value="${station.id}">Sender
+        </option> 
+    </select>
+    <input type="submit" value="Send">
+</form>
+ <img src="../../images/man-holding-remote-control-10401601.jpg" 
+     th:attr="src=@{/images/man-holding-remote-control-10401601.jpg},title=#{logo},alt=#{logo}" />
+<h1>Program title by Station</h1>   
+<table>
+    <thead>
+    <tr>
+        <th>broadcasting time</th>
+		<th>Program Title</th>
+		<th>description</th>
+		
+    </tr>
+    </thead>
+    <tbody>
+   
+    <tr th:each="schedule : ${allSchedules}">
+        <td th:text="${schedule.airDateTime}">Broadcasting time</td>
+        <td th:text="${schedule.episode.name}">Program Title</td>
+        <td th:text="${schedule.episode.description}">description</td>  
+     </tr>
+    </tbody>
+</table>
+
+<footer th:replace="fragments/footer.html :: footer">
+	</footer>
+</body>
+</html>

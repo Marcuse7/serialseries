@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="User account registration"/>
+    <meta name="author" content="Amir Boroumand"/>
+    <link rel="icon" href="favicon.ico"/>
+
+    <title>Registrierung bei SerialSeries</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+
+    <link th:href="@{css/style.css}" rel="stylesheet"/>
+
+<!--Beginn Popup window-->
+ <!--   <style> body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+/* Hidden by default */
+    position: fixed;
+/* Stay in place */
+    z-index: 1;
+/* Sit on top */
+   padding-top: 100px;
+/* Location of the box */
+    left: 0;   top: 0;   width: 100%;
+/* Full width */
+    height: 100%;
+/* Full height */
+    overflow: auto;
+/* Enable scroll if needed */
+    background-color: rgb(0,0,0);
+/* Fallback color */
+    background-color: rgba(0,0,0,0.4);
+/* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+    </style>-->
+<!--Ende Popup window-->
+
+</head>
+
+<body class="gray-bg">
+
+<!--Beginn Popup Window-->
+<<!--!&#45;&#45;<h2>Modal Example</h2>
+
+&lt;!&ndash; Trigger/Open The Modal &ndash;&gt;
+<button id="myBtn">Open Modal</button>
+
+&lt;!&ndash; The Modal &ndash;&gt;
+<div id="myModal" class="modal">
+
+    &lt;!&ndash; Modal content &ndash;&gt;
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {   modal.style.display = "block"; }
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {   modal.style.display = "none"; }
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+} }
+</script>&ndash;&gt;-->
+<!--Ende Popup Window-->
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+
+        <h4>Neuer Benutzer</h4>
+
+        <form autocomplete="off" action="#" th:action="@{/register}"
+              th:object="${user}" method="post" class="m-t" role="form"
+              data-toggle="validator">
+
+            <div th:if="${confirmationMessage}" class="alert alert-success"
+                 role="alert" th:text=${confirmationMessage}></div>
+
+            <div th:if="${errorMessage}"
+                 class="alert alert-danger" role="alert"
+                 th:text="${errorMessage}"></div>
+
+
+            <div th:if="${#fields.hasErrors('firstName')}"
+                 th:errors="*{firstName}"
+                 class="validation-message alert alert-danger" role="alert"></div>
+
+            <div th:if="${#fields.hasErrors('lastName')}"
+                 th:errors="*{lastName}"
+                 class="validation-message alert alert-danger" role="alert"></div>
+
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                 class="validation-message alert alert-danger" role="alert"></div>
+
+            <div class="form-group input-group has-feedback">
+                <label th:if="${#fields.hasErrors('firstName')}"
+                       th:errors="*{firstName}" class="validation-message"></label>
+                <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+
+                <input type="text" th:field="*{firstName}"
+                       placeholder="First Name" class="form-control" required/>
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+                <input type="text" th:field="*{lastName}"
+                       placeholder="Last Name" class="form-control" required/>
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </span>
+                <input type="email" th:field="*{email}"
+                       placeholder="Email Address" class="form-control"
+                       data-error="This email address is invalid" required/>
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-lg btn-primary btn-block">Registrieren
+            </button>
+
+
+            <span th:utext="${email}">E-Mail</span>
+        </form>
+
+
+    </div>
+</div>
+
+<!-- jQuery-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<!-- Bootstrap Validator plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
+
+</body>
+
+</html>

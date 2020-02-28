@@ -1,39 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
-<html xmlns:th="http://www.thymeleaf.org">
-<title>Insert title here</title>
+    <meta charset="utf-8">
+    <title>Insert title here</title>
+
 </head>
 <body>
 
+<header th:fragment="top">
+
+    <!-- Bootstrap Hamburger -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="http://localhost:8080">SerialSeries</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost:8080">Home <span class="sr-only">(current)</span></a>
+                </li>
+<!--                 <li class="nav-item"> -->
+<!--                     <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal" -->
+<!--                        th:href="@{/login}" class="nav-link">Alle Serien</a> -->
+<!--                     <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/series/table">Alle Serien</a> -->
+<!--                 </li> -->
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link">Alle Serien</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link" href="/series/page">Alle Serien</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link">Tipps der Redaktion</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/series/all">Tipps der Redaktion</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                       th:href="@{/login}" class="nav-link">Alle Sender</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/stations">Alle Sender</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        News
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://www.hbo.com/game-of-thrones">Game of Thrones</a>
+                        <a class="dropdown-item" href="https://www.netflix.com/de/title/80057281">Stranger Things</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="http://www.netflix.com">Buy Netflix</a>
+                        <a class="dropdown-item" href="https://www.sky.de/serien">Buy Sky</a>
+                        <a class="dropdown-item" href="https://www.prosieben.de/stars/oscar-award">Oscars 2020</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Premium</a>
+                </li>
+            </ul>
+        </div>
+
+        <form class="form-inline my-2 my-lg-0" action="http://localhost:8080/series/search" method="post">
+            <input class="form-control mr-sm-2" type="search" placeholder="Meine Serie" aria-label="Search"
+                   id="suchbegriff" name="suchbegriff">
+
+            <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Suche
+            </button>
+        </form>&nbsp;&nbsp;
+        <button sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
+                th:href="@{/login}" class="btn btn-outline-success my-2 my-sm-0">Suche
+        </button>&nbsp;&nbsp;&nbsp;
+
+        <!--  Modal Login  -->
+        <div class="col-xs-12">
+            <button sec:authorize="!isAuthenticated()" class="btn btn-primary btn-block" data-target="#loginModal" data-toggle="modal"
+                    th:href="@{/login}">Anmelden
+            </button>
+            <form sec:authorize="isAuthenticated()" class="form-signin dropdown">
+                <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Du bist eingeloggt</a>
+                <div class="dropdown-menu pull-right" role="menu" aria-labelledby="navbarDropdown">
+                    <a class="pl-3"><b>Benutzer:</b></a><br>
+                    <a class="pl-3" sec:authentication="name"></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">1. Lorem ipsum</a>
+                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">2. Lorem ipsum</a>
+                    <a class="nav-link disabled" aria-disabled="true" href="#" tabindex="-1">3. Lorem ipsum</a>
+                    <a class="pl-3" th:href="@{/logout}">Abmelden</a>
+                </div>
+            </form>
+            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="loginModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"> Anmelden</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:replace="fragments/login-form.html :: login-form">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Register  -->
+            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="modalRegisterForm" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Registrieren</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:fragment="register-form" method="post" action="/register">
+                                <div class="form-group">
+                                    <label for="firstName" class="sr-only">Vorname</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Vorname"
+                                           required="" autofocus="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName" class="sr-only">Nachname</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Nachname"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">E-Mail</label>
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="E-Mail"
+                                           required/>
+                                </div>
+                                <div>
+                                    <br><br><br>
+                                </div>
+                                <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
+                                <button class="btn btn-primary" type="submit" autofocus="">Registrieren</button>
+                                <span th:utext="${email}">E-Mail</span>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  Ende Modal Register  -->
+        </div>
+        <!--  Ende Modal Login  -->
+
+    </nav>
+    <!-- Ende Bootstrap-Navi -->
+
+    <section class="jumbotron text-center">
+        <h1>Serial Series</h1>
+        <!-- 	<img th:src="@{/images/test-logo-200x100.png}"  /> -->
+        <!-- p>The world's most popular series administration site</p> -->
+    </section>
 
 
-	<header th:fragment="top">
-	
-	
-  
-  <nav class="container">
-		<div class="row">
-		<ul class="col-lg-4">
-		<li><a href="https://www.netflix.com/">netflix</a></li>
-      	<li><a href="http://www.t-online.de">www.t-online.de</a></li>
-      	<li><a href="http:www.videoload.de">Videoload</a></li>	
-      	</ul>
-
-     <h3  class="col-lg-4">Profile</h3>
-		<ul class="col-lg-4">
-		<li><a href="#">Sign in</a></li>
-		<li><a href="#">Register</a></li>
-		</ul>
-      </div>
-  </nav>
-  <section class="jumbotron text-center">
-	<h1>Serial Series</h1>
-	<img th:src="@{/images/test-logo-200x100.png}"  />
-	<p>The world's most popular series administration site</p>
-	</section>
+<!--Modal: modalOnLoad-->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Glückwunsch</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p th:text="${confirmationMessage}">Schön, dass Du uns wieder besuchst.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal: modalOnLoad-->
 
 </header>
-
 </body>
 </html>

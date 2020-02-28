@@ -5,15 +5,16 @@ body {
 	background-color: #FFF5EE;
 	color: #A0522D;
 	font-family: 'Quicksand', sans-serif;
+	/* margin: 0 20 0 20; */
 	}
 
 a {
 	color: #DD6347;
 	text-decoration:none;
 	}
-a:visited  {
+/*a:visited  {
 	color: #AA8072;
-	}
+	}*/
 a:hover {
 	opacity: 0.5;
 }
@@ -21,3 +22,26 @@ a:hover {
 li {
 	list-style-type:none;
 }
+
+.dropdown-left {
+  right: 0;
+  left: auto;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+
+.series_all_card {
+	width:50%;
+	margin: 0 auto 10px auto;
+}
+
+@media screen and (max-width: 800px) {
+  .series_all_card {
+    width: 70%;
+  }
+
+@media screen and (max-width: 500px) {
+	  .series_all_card {
+	    width: 90%;
+	  }

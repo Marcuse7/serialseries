@@ -1,19 +1,50 @@
 package com.wildcodeschool.serialseries.thymeleaf.entity;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Series {
+	
 	@Id
+	@Column(columnDefinition="VARCHAR(14)")
     private String id;
+	
+	@Column(columnDefinition="VARCHAR(120)", nullable=false)
 	private String name;
+	
+	@Column(columnDefinition="VARCHAR(1000)")
 	private String description;
+	
+	@Column(columnDefinition="VARCHAR(200)")
 	private String picture;
+	
 	private Float rating;
+	
+	@Column(columnDefinition="VARCHAR(3)", nullable=false)
 	private String language;
+	
 	private Boolean watched;
+	
+	private Boolean is_series;
+	
+	@OneToMany(mappedBy="series")
+	private List<Episode> episodes;
 
+	// this class is "owner" of many-to-many relation, class User is slave and has mappedBy parameter
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="Subscriptions")
+	private Set<User> subscribers = new HashSet<>();
 
 	public Series () {
 
@@ -103,5 +134,40 @@ public class Series {
 		this.watched = watched;
 	}
 
+	public Boolean getIs_series() {
+		return is_series;
+	}
 
+	public void setIs_series(Boolean is_series) {
+		this.is_series = is_series;
+	}
+
+	public Set<User> getSubscribers() {
+		return subscribers;
+	}
+
+	public void setSubscribers(Set<User> subscribers) {
+		this.subscribers = subscribers;
+	}
+
+	public void subscribe(User user) {
+		if (subscribers == null) {
+			subscribers = new HashSet<User>();
+			System.out.print("Series.subscribers was null");
+		}
+		subscribers.add(user);
+		System.out.println("User " + user.getName() + " subscribed to series " + this.name);
+	}
+	
+	public void unSubscribe(User user) {
+		subscribers.remove(user);
+		System.out.println("User " + user.getName() + " unsubscribed from series " + this.name);
+	}
+	
+	public boolean isSubscribedBy(User user) {
+		if (subscribers == null) {
+			return false;
+		}
+		return subscribers.contains(user);
+	}
 }
