@@ -23,15 +23,15 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="http://localhost:8080">Home <span class="sr-only">(current)</span></a>
                 </li>
+<!--                 <li class="nav-item"> -->
+<!--                     <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal" -->
+<!--                        th:href="@{/login}" class="nav-link">Alle Serien</a> -->
+<!--                     <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/series/table">Alle Serien</a> -->
+<!--                 </li> -->
                 <li class="nav-item">
                     <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
                        th:href="@{/login}" class="nav-link">Alle Serien</a>
-                    <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/series/table">Alle Serien</a>
-                </li>
-                <li class="nav-item">
-                    <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
-                       th:href="@{/login}" class="nav-link">Alle Serien (paginiert)</a>
-                    <a sec:authorize="isAuthenticated()" class="nav-link" href="http://localhost:8080/series/page">Alle Serien (paginiert)</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link" href="/series/page">Alle Serien</a>
                 </li>
                 <li class="nav-item">
                     <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
