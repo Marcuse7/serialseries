@@ -2,29 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:include="fragments/external-resources.html :: headFragment">
     <title id="pageTitle">Serial Series | Home</title>
-
 </head>
 <body>
-
 <header th:replace="fragments/header.html :: top">
 </header>
 <img src="../../images/app-entertainment-ipad-mockup-265687.jpg" title="Logo de Good Thymes" alt="Logo de Good Thymes"
      th:attr="src=@{/images/app-entertainment-ipad-mockup-265687.jpg},title=#{logo},alt=#{logo}"/>
-
-
 <br/><br/>
 <!--  http://localhost:8080/series/one?seriesId=SH012975020000 -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
-            <h2>Doc Martin</h2>
-            <img src="https://s3.amazonaws.com/schedulesdirect/assets/p368906_i_h3_ab.jpg" width="200px">
-            <p>Is there a dyspeptic doctor in the house? Successful surgeon Dr Martin Ellingham abruptly leaves his London practice to
-                become general practitioner in the sleepy fishing village of Portwenn, where he spent the holidays during his youth. But
-                ...</p>
+            <h2>Brooklyn Nine-Nine</h2>
+            <img src="https://s3.amazonaws.com/schedulesdirect/assets/p9974290_l_h3_ab.jpg" width="200px">
+            <p>Detective Jake Peralta, a talented and carefree cop with the best arrest record, has never had to follow the rules too
+            closely or work very hard. That changes when Ray Holt ...</p>
             <a sec:authorize="!isAuthenticated()" data-target="#loginModal" data-toggle="modal"
-               th:href="@{/login}">more about the Doc</a>
-            <a sec:authorize="isAuthenticated()" href="http://localhost:8080/series/one?seriesId=SH012606080000">more about the Doc</a>
+               th:href="@{/login}">more about Brooklyn Nine-Ninec</a>
+            <a sec:authorize="isAuthenticated()" href="http://localhost:8080/series/one?seriesId=SH018486920000">more about Brooklyn Nine-Nine</a>
         </div>
         <div class="col-md-4">
             <h2>Caillou</h2>
@@ -36,16 +31,14 @@
 			<a sec:authorize="isAuthenticated()" href="http://localhost:8080/stations/findOne?id=83615">mehr auf KIKA</a>
         </div>
         <div class="col-md-4">
-            <h2>München Mord</h2>
-            <img src="https://s3.amazonaws.com/schedulesdirect/assets/p10650301_b_h11_aa.jpg" width="200px">
-            <p>Das Münchener Trio Ludwig Schaller, Harald Neuhauser und Angelika Flierl genießt bei den Polizeikollegen nicht den besten
-                Ruf: Dass sie trotzdem erfolgreich sind, hat mit ihren unorthodoxen Ermittlungsmethoden zu tun.</p>
-            <a href="http://localhost:8080/stations/findOne?id=90438">mehr auf ZDF neo HD</a>
+            <h2>Huck</h2>
+            <img src="https://json.schedulesdirect.org/20141201/image/assets/p12071855_i_h3_aa.jpg" width="200px">
+            <p>Bad Cannstatt, bevölkerungsreichster Stadtteil Stuttgarts, Industriestandort und Heimat des Privatdetektives Huck. Der ehemalige Polizist hat eindeutig ein Problem mit Autorität. Zusammen mit seinem Kumpel Cem ....</p>
+            <a href="http://localhost:8080/series/one?seriesId=SH022546860000">mehr zu Huck</a>
         </div>
     </div>
 </div>
 <br/> <br/>
-
 <footer th:replace="fragments/footer.html :: footer">
 </footer>
 </body>

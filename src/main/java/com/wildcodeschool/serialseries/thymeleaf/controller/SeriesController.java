@@ -52,15 +52,13 @@ public class SeriesController {
 	@GetMapping("/series/all")
 	@Transactional
     public String showAllSeries(Model out) {
-		
-//		out.addAttribute ("series", seriesRepository.findOrderedByNameLimitedTo(20));
+	
 
 		String name="";
 		String description=" ";
 
 	 	out.addAttribute ("series", seriesRepository.findFirst30ByNameOrDescriptionContaining(name,description));
-		
-//		out.addAttribute ("series", seriesRepository.findAll());
+
 	 	
 	 	userSubscriptions(out);
 		
@@ -71,20 +69,12 @@ public class SeriesController {
 	@Transactional
 	public String showOneSeries(Model out, @RequestParam String seriesId) {
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User loggedOnUser = (User) authentication.getPrincipal();
-		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
-		entityManager.refresh(user);
-		out.addAttribute("user", user);
-		
-		Set<Series> subscriptions = user.getSubscriptions();
-		out.addAttribute("subscriptions", subscriptions);
+	
 		
 		Series series = seriesRepository.findById(seriesId).get();
 		out.addAttribute ("series", series);  // Optional unwrap
 		
-		List<Episode> episodes = episodeRepository.findBySeriesIs(series);
-		out.addAttribute("episodes", episodes);
+		userSubscriptions(out);
 		
 		return "series_all";
 		
@@ -98,14 +88,7 @@ public class SeriesController {
 		
 		out.addAttribute ("page", page);
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User loggedOnUser = (User) authentication.getPrincipal();
-		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
-		entityManager.refresh(user);
-		Set<Series> subscriptions = user.getSubscriptions();
-		out.addAttribute("subscriptions", subscriptions);
-		
-		out.addAttribute("user", user);
+		userSubscriptions(out);
 		
         return "series_page";
     }
@@ -113,17 +96,9 @@ public class SeriesController {
 	@GetMapping("/series/table")
 	@Transactional
     public String showAllSeriesTable(Model out) {
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User loggedOnUser = (User) authentication.getPrincipal();
-		User user = (User) entityManager.merge(loggedOnUser); // get "non-detached" user object
-		entityManager.refresh(user);
-		out.addAttribute("user", user);
-		
-		Set<Series> subscriptions = user.getSubscriptions();
-		out.addAttribute("subscriptions", subscriptions);
-		
+			
 		out.addAttribute ("series", seriesRepository.findAll());
+		userSubscriptions(out);
 		
         return "series_table";
     }
@@ -152,6 +127,7 @@ public class SeriesController {
 		series.subscribe(user);
 		
 		out.addAttribute ("series", series);
+
 		
 		
 
