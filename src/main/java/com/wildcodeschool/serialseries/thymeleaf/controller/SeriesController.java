@@ -57,7 +57,7 @@ public class SeriesController {
 		String name="";
 		String description=" ";
 
-	 	out.addAttribute ("series", seriesRepository.findFirst30ByNameOrDescriptionContaining(name,description));
+	 	out.addAttribute ("series", seriesRepository.findFirst30ByNameContainingOrDescriptionContaining(name,description));
 
 	 	
 	 	userSubscriptions(out);
@@ -107,7 +107,7 @@ public class SeriesController {
 	@Transactional
     public String showSeriesByFilter(Model out, @RequestParam String suchbegriff) {
 		userSubscriptions(out);
-		out.addAttribute ("series", seriesRepository.findByNameOrDescriptionContaining(suchbegriff, suchbegriff));
+		out.addAttribute ("series", seriesRepository.findByNameContainingOrDescriptionContaining(suchbegriff, suchbegriff));
         return "series_all";
     }
 	

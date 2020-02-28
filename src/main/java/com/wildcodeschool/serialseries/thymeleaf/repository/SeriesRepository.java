@@ -16,10 +16,10 @@ public interface SeriesRepository extends PagingAndSortingRepository <Series, St
 	
 	Optional<Series> findById(String seriesId);
 	
-	List <Series> findByNameOrDescriptionContaining (String name, String description);
+	List <Series> findByNameContainingOrDescriptionContaining (String name, String description);
 
 	
-	List <Series> findFirst30ByNameOrDescriptionContaining (String name, String description);
+	List <Series> findFirst30ByNameContainingOrDescriptionContaining (String name, String description);
 
 
 
